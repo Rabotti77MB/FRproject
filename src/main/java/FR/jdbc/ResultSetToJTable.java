@@ -13,36 +13,40 @@ import java.sql.Statement;
 public class ResultSetToJTable extends JFrame {
 
     public ResultSetToJTable() {
-        super("ResultSetToJTable");
+        super("RABOTTI&FOLLONI");
 
         try {
-            testConnection();
-            setContentPane(new JScrollPane(getTable("SELECT * FROM sausage")));
+            DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
+            Statement statement = DBManager.getConnection().createStatement();
+            setContentPane(new JScrollPane(getTableSelect("SELECT * FROM persona")));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error!");
         }
 
-        setSize(600, 200);
+        setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
     public void testConnection() throws SQLException {
-        DBManager.setConnection(Utils.JDBC_Driver_SQLite, Utils.JDBC_URL_SQLite);
+        DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
         Statement statement = DBManager.getConnection().createStatement();
-
+        /*
         try {
-            statement.executeQuery("SELECT * FROM sausage LIMIT 1");
+            statement.executeQuery("SELECT * FROM persona ");
         } catch (SQLException e) {
-            statement.executeUpdate("DROP TABLE IF EXISTS sausage");
+            System.out.print("errore");
+            /*
             statement.executeUpdate("CREATE TABLE sausage (" + "id VARCHAR(50) PRIMARY KEY, " + "length REAL, diameter REAL, " + "weight REAL, " + "quality VARCHAR(50))");
             statement.executeUpdate("INSERT INTO sausage (id, length, diameter, weight, quality) VALUES ('214bb0db-aa52-48be-b052-cd30f730ae79', 30.2, 30.0, 2.6, 'High')");
             statement.executeUpdate("INSERT INTO sausage (id, length, diameter, weight, quality) VALUES ('03e9e721-f241-4539-9cc7-baecd8b3a931', 40.3, 35.5, 2.2, 'Low')");
             statement.executeUpdate("INSERT INTO sausage (id, length, diameter, weight, quality) VALUES ('e1f0dcb0-181b-4463-97d7-edcfed736ae1', 35.1, 28.2, 4.3, 'High')");
+
         }
+        */
     }
 
-    public JTable getTable(String query) throws SQLException {
+    public JTable getTableSelect(String query) throws SQLException {
         JTable t = new JTable();
         DefaultTableModel dm = new DefaultTableModel();
 
@@ -67,11 +71,20 @@ public class ResultSetToJTable extends JFrame {
         }
 
         t.setModel(dm);
-        t.setGridColor(Color.BLACK);
+        t.setGridColor(Color.magenta);
+
         return t;
     }
 
     public static void main(String[] args) {
-        new ResultSetToJTable();
+       try {
+
+            BasicOperations op = new BasicOperations();
+            //op.testDelete("cognome","tomori");
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+       new ResultSetToJTable();
+
     }
 }

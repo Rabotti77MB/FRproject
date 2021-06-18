@@ -62,12 +62,7 @@ public class BasicOperations {
     }
 
     public void run() {
-        /*try {
-            System.out.println("\n- insert database...");
-            testInsert();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }*/
+
         try {
             System.out.println("\n- inserting lines...");
             testInsert();
@@ -75,23 +70,24 @@ public class BasicOperations {
             System.out.println("Something went wrong... " + a.getMessage());
         }
         try {
-            System.out.println("\n- reading database...");
-            testSelect();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-        try {
-            System.out.println("\n- deleting lines...");
-            testDelete();
+            System.out.println("\n- controllo insert...");
+            testSelectAll("persona");
         } catch (SQLException a) {
             System.out.println("Something went wrong... " + a.getMessage());
         }
         try {
-            System.out.println("\n- reading database...");
-            testSelect();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
+            System.out.println("\n- controllo insert...");
+            testDelete("cognome","artoni");
+        } catch (SQLException a) {
+            System.out.println("Something went wrong... " + a.getMessage());
         }
+        try {
+            System.out.println("\n- controllo finale...");
+            testSelectAll("persona");
+        } catch (SQLException a) {
+            System.out.println("Something went wrong... " + a.getMessage());
+        }
+
 
 
         /*
@@ -149,23 +145,22 @@ public class BasicOperations {
      * Reads the content of the person table Results are limited using "LIMIT
      * 100" This is useful for very large tables
      */
-    public void testSelect() throws SQLException {
-        ResultSet rs = statement.executeQuery("SELECT * FROM persona  ");
+    public void testSelectAll(String s) throws SQLException {
+        ResultSet rs = statement.executeQuery("SELECT * FROM "+s+";  ");
         while (rs.next()) {
             printRow(rs);
         }
     }
     public void testInsert() throws SQLException {
-        System.out.print("sto eseguendo: insert into persona (nome,cognome,ruolo) values (\"davide\",\"rabotti\", \"difensore\"); ");
+        System.out.print("sto eseguendo: insert into persona (nome,cognome,ruolo) values (\"zio\",\"fabrizio\", \"difensore\"); ");
         statement.executeUpdate(
-                "insert into persona (nome,cognome,ruolo) values (\"davide\",\"rabotti\", \"difensore\"); ");
+                "insert into persona (nome,cognome,ruolo) values (\"zio\",\"fabrizio\", \"difensore\"); ");
 
     }
-    public void testDelete() throws SQLException {
-        System.out.print("sto eseguendo: DELETE FROM persona" +
-                "WHERE nome='davide'; ");
+    public void testDelete(String nomecol ,String val) throws SQLException {
+        System.out.print("sto eseguendo: DELETE FROM persona WHERE "+  nomecol+ "='"+val+"'; ");
         statement.executeUpdate(
-                "DELETE FROM persona WHERE nome='davide'; ");
+                "DELETE FROM persona WHERE "+  nomecol+ "='"+val+"'; ");
 
     }
     /**
