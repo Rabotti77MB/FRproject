@@ -62,13 +62,39 @@ public class BasicOperations {
     }
 
     public void run() {
+        /*try {
+            System.out.println("\n- insert database...");
+            testInsert();
+        } catch (SQLException e) {
+            System.out.println("Something went wrong... " + e.getMessage());
+        }*/
+        try {
+            System.out.println("\n- inserting lines...");
+            testInsert();
+        } catch (SQLException a) {
+            System.out.println("Something went wrong... " + a.getMessage());
+        }
         try {
             System.out.println("\n- reading database...");
             testSelect();
         } catch (SQLException e) {
             System.out.println("Something went wrong... " + e.getMessage());
         }
-/*
+        try {
+            System.out.println("\n- deleting lines...");
+            testDelete();
+        } catch (SQLException a) {
+            System.out.println("Something went wrong... " + a.getMessage());
+        }
+        try {
+            System.out.println("\n- reading database...");
+            testSelect();
+        } catch (SQLException e) {
+            System.out.println("Something went wrong... " + e.getMessage());
+        }
+
+
+        /*
         try {
             System.out.println("\n- updating database...");
             testUpdate();
@@ -110,13 +136,13 @@ public class BasicOperations {
         } catch (SQLException e) {
             System.out.println("Something went wrong... " + e.getMessage());
         }
-
+        */
         try {
             System.out.println("\n- closing database...");
             DBManager.close();
         } catch (SQLException e) {
             System.out.println("Something went wrong... " + e.getMessage());
-        }*/
+        }
     }
 
     /**
@@ -124,12 +150,24 @@ public class BasicOperations {
      * 100" This is useful for very large tables
      */
     public void testSelect() throws SQLException {
-        ResultSet rs = statement.executeQuery("SELECT * FROM persona ");
+        ResultSet rs = statement.executeQuery("SELECT * FROM persona  ");
         while (rs.next()) {
             printRow(rs);
         }
     }
+    public void testInsert() throws SQLException {
+        System.out.print("sto eseguendo: insert into persona (nome,cognome,ruolo) values (\"davide\",\"rabotti\", \"difensore\"); ");
+        statement.executeUpdate(
+                "insert into persona (nome,cognome,ruolo) values (\"davide\",\"rabotti\", \"difensore\"); ");
 
+    }
+    public void testDelete() throws SQLException {
+        System.out.print("sto eseguendo: DELETE FROM persona" +
+                "WHERE nome='davide'; ");
+        statement.executeUpdate(
+                "DELETE FROM persona WHERE nome='davide'; ");
+
+    }
     /**
      * Update the content of the book table
      */
@@ -194,6 +232,10 @@ public class BasicOperations {
     public void printRow(ResultSet rs) throws SQLException {
         System.out.println("nome=" + rs.getString("nome") + ", cognome=" + rs.getString("cognome") + ", ruolo="
                 + rs.getString("ruolo") );
+
+    }
+    public void printRowNome(ResultSet rs) throws SQLException {
+        System.out.println("nome=" + rs.getString("nome") );
 
     }
 }
