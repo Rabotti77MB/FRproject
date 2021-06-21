@@ -18,7 +18,7 @@ public class ResultSetToJTable extends JFrame {
         try {
             DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
             Statement statement = DBManager.getConnection().createStatement();
-            setContentPane(new JScrollPane(getTableSelect("SELECT * FROM persona")));
+            setContentPane(new JScrollPane(getTableSelect("SELECT * FROM giocatori")));
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database Error!");
         }
