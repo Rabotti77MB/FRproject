@@ -20,6 +20,7 @@ public class MainWindow extends JFrame {
         Corrieri = new JButton("Miglior corriere");
 
         JPanel p1 = new JPanel();
+        p1.setBackground(Color.BLUE);
         // p1.getContentPane().add(new JPanelBackground("mbe.jpg"));
 
         // JPanel p2 = new JPanel(new GridLayout());
