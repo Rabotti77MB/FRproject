@@ -19,6 +19,7 @@ public class Look extends JFrame implements ActionListener{
     private final JButton Insert;
     private final JTextField fornitore;
     private final JTextField prezzo;
+    private final JPanel p2 ;
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == Select) {
             String I_fornitore = fornitore.getText();
@@ -29,9 +30,10 @@ public class Look extends JFrame implements ActionListener{
                 /*JOptionPane.showMessageDialog(this, "devo selezionare", "OPERAZIONE",
                         JOptionPane.WARNING_MESSAGE);*/
                 try {
-                    DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
-                    Statement statement = DBManager.getConnection().createStatement();
-                    setContentPane(new JScrollPane(getTableSelect("SELECT * FROM persona  WHERE nome=\""+I_fornitore+"\"")));
+
+                   JScrollPane l= new JScrollPane(getTableSelect("SELECT * FROM persona  WHERE nome=\""+I_fornitore+"\""));
+                   l.setSize(150,150);
+                   p2.add(l,BorderLayout.CENTER);
                 } catch (SQLException e1) {
                     JOptionPane.showMessageDialog(this, "Database Error!");
                 }
@@ -82,7 +84,10 @@ public class Look extends JFrame implements ActionListener{
 
         return t;
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+
+        DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
+        Statement statement = DBManager.getConnection().createStatement();
         SwingUtilities.invokeLater(Look::new);
     }
 
@@ -94,8 +99,8 @@ public class Look extends JFrame implements ActionListener{
         fornitore= new JTextField(" inserisci fornitore");
         prezzo= new JTextField(" inserisci prezzo");
 
+        p2=new JPanel();
 
-        JPanel p2 = new JPanel();
         p2.add(Select,BorderLayout.SOUTH);
         p2.add(Insert);
         p2.add(fornitore,BorderLayout.WEST);
@@ -105,7 +110,7 @@ public class Look extends JFrame implements ActionListener{
 
         setContentPane(p2);
         pack();
-        setSize(400,200);
+        setSize(600,200);
         setVisible(true);
     }
 }
