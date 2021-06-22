@@ -12,8 +12,13 @@ public class Utils {
             Paths.get(Utils.ooprogrammingdir(), "ooprogramming.sqlite").toString());
 
     public static final String JDBC_Driver_MySQL = "com.mysql.cj.jdbc.Driver";
-    public static final String JDBC_URL_MySQL = "jdbc:mysql://localhost:3306/DATAs?user=afolloni&password=tB2021/n&serverTimezone=" +
+    public static final String JDBC_URL_MySQL = "jdbc:mysql://localhost:3306/jdbc_test?user=admin&password=Inter2010&serverTimezone=" +
             TimeZone.getDefault().getID();
+    /*
+    FOLLO
+    public static final String JDBC_URL_MySQL = "jdbc:mysql://localhost:3306/jdbc_test?user=admin&password=Inter2010&serverTimezone=" +
+    TimeZone.getDefault().getID();
+    */
 
     public static String ooprogrammingdir() {
         String path = String.format("%s%s%s%s%s", System.getProperty("user.home"), System.getProperty("file.separator"),

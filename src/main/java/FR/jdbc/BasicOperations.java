@@ -36,7 +36,7 @@ public class BasicOperations {
              * Simple query for testing that everything is OK. If an exception raised, the
              * db is deleted and created from scratch.
              */
-            statement.executeQuery("SELECT nome FROM persona ");
+            statement.executeQuery("SELECT * FROM persona ");
         } catch (SQLException e) {
            /* statement.executeUpdate("DROP TABLE IF EXISTS book");
             statement.executeUpdate("CREATE TABLE book (" + "id INTEGER PRIMARY KEY, " + "title VARCHAR(30), "
