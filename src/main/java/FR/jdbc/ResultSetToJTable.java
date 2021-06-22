@@ -71,7 +71,7 @@ public class ResultSetToJTable extends JFrame {
         }
 
         t.setModel(dm);
-        t.setGridColor(Color.magenta);
+        t.setGridColor(Color.black);
 
         return t;
     }

@@ -1,4 +1,4 @@
-package FR.Aesthetic;
+package FR.jdbc;
 
 
 import javax.swing.*;
@@ -19,8 +19,10 @@ public class Look extends JFrame implements ActionListener{
             int r= I_fornitore.compareTo("");
             if(r!=0 && I_prezzo!=0) {
                 /*codice del db per la select (vedi funzione già creata da davide) */
-                JOptionPane.showMessageDialog(this, "devo selezionare", "OPERAZIONE",
-                        JOptionPane.WARNING_MESSAGE);
+                /*JOptionPane.showMessageDialog(this, "devo selezionare", "OPERAZIONE",
+                        JOptionPane.WARNING_MESSAGE);*/
+
+
             }
 
         }
@@ -29,9 +31,11 @@ public class Look extends JFrame implements ActionListener{
             double I_prezzo = Double.parseDouble(prezzo.getText());
             int r= I_fornitore.compareTo("");
             if (I_prezzo > 0 && r!=0) {
-                /* codice del db per la insert (vedi funzione già creata da davide)*/
+                /* codice del db per la insert (vedi funzione già creata da davide)
                 JOptionPane.showMessageDialog(this, "DEVO INSERIRE!", "INSERT",
-                        JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.WARNING_MESSAGE);*/
+
+
             }
         }
     }
