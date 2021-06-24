@@ -64,26 +64,8 @@ public class BasicOperations {
     public void run() {
 
         try {
-            System.out.println("\n- inserting lines...");
-            testInsert();
-        } catch (SQLException a) {
-            System.out.println("Something went wrong... " + a.getMessage());
-        }
-        try {
-            System.out.println("\n- controllo insert...");
-            testSelectAll("persona");
-        } catch (SQLException a) {
-            System.out.println("Something went wrong... " + a.getMessage());
-        }
-        try {
-            System.out.println("\n- controllo insert...");
-            testDelete("cognome","artoni");
-        } catch (SQLException a) {
-            System.out.println("Something went wrong... " + a.getMessage());
-        }
-        try {
-            System.out.println("\n- controllo finale...");
-            testSelectAll("persona");
+            System.out.println("\n- scrollable...");
+            testScrollable();
         } catch (SQLException a) {
             System.out.println("Something went wrong... " + a.getMessage());
         }
@@ -175,7 +157,7 @@ public class BasicOperations {
      * Test Scrollable ResultSet
      */
     public void testScrollable() throws SQLException {
-        ResultSet rs = statement.executeQuery("SELECT * FROM book LIMIT 100 OFFSET 0");
+        ResultSet rs = statement.executeQuery("SELECT * FROM persona ");
         // Third record
         rs.absolute(3);
         printRow(rs);
