@@ -12,13 +12,15 @@ public class MainWindow extends JFrame {
     private final JButton Corrieri;
     // private final JTextArea Nome;
 
+    JFrame frame = new JFrame();
+
     JMenuBar m;
     JMenu Menu;
     JMenuItem i1, i2, i3;
 
 
     public MainWindow() {
-        super("MBE: gestionale d'impresa");
+        frame.setTitle("MBE: gestionale d'impresa");
         // Nome=new JTextArea("MBE");
         Payments = new JButton("Gestione fatture");
         //Payments.setBackground(Color.RED);
@@ -38,42 +40,29 @@ public class MainWindow extends JFrame {
             e.printStackTrace();
         }
 
+        ImageIcon image = new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
+        frame.setIconImage(image.getImage());
+
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        frame.setSize(420,420);
+
         m = new JMenuBar();
         Menu = new JMenu("Menu");
         i1 = new JMenuItem("Item 1");
         Menu.add(i1);
         m.add(Menu);
 
-        JFrame p1 = new JFrame();
-        JPanel p = new JPanel();
-        // p.setBackground(Color.BLUE);
-        // p1.getContentPane().add(new JPanelBackground("mbe.jpg"));
-        // p1.add(m);
-        // p1.setJMenuBar(m);
+        frame.add(m);
 
-        // JPanel p2 = new JPanel(new GridLayout());
-        // p1.add(Nome,BorderLayout.NORTH);
+        JPanel p = new JPanel();
+
         p.add(Payments);
-        // p1.add(new JLabel("°C"));
         p.add(Magazzino);
         p.add(Corrieri);
 
-        p1.add(p);
-
-        /** JPanel p2 = new JPanel(new GridLayout(1, 2));
-         p2.add(CFButton);
-         p2.add(FCButton);
-
-         JPanel p3 = new JPanel(new BorderLayout());
-         p3.add(p1, BorderLayout.CENTER);
-         p3.add(p2, BorderLayout.PAGE_END); */
-
-        /** JFrame methods called */
-        setContentPane(p);
-        // add(Menu);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(375, 110);
-        setVisible(true);
+        frame.add(p);
     }
 
     public static void main(String[] args) {
