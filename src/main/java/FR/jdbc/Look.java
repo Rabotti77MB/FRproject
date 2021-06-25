@@ -14,6 +14,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 public class Look extends JFrame implements ActionListener{
    //private static final long serialVersionUID = 1L;
     private final JButton Select;
@@ -43,8 +44,10 @@ public class Look extends JFrame implements ActionListener{
                     Attivo.setBorder(titleBorder);
                     TitledBorder titleBorder1 = new TitledBorder("Passivo");
                     Passivo.setBorder(titleBorder1);
-                    p2.add(Attivo,BorderLayout.PAGE_END);
-                   p2.add(Passivo,BorderLayout.PAGE_END);
+                    p2.add(Attivo,BorderLayout.WEST);
+                   p2.add(Passivo,BorderLayout.EAST);
+                    p2.revalidate();
+                    p2.repaint();
 
                 } catch (SQLException e1) {
                     JOptionPane.showMessageDialog(this, "Database Error!");
@@ -55,22 +58,19 @@ public class Look extends JFrame implements ActionListener{
         }
         if (e.getSource() == Pulisci) {
             p2.removeAll();
-
             p2.add(Select,BorderLayout.SOUTH);
             p2.add(Pulisci);
             p2.add(fornitore,BorderLayout.WEST);
             p2.add(prezzo,BorderLayout.EAST);
-
-
-
             setContentPane(p2);
             pack();
-            //setSize(600,200);
+            setSize(1600,1200);
+            p2.revalidate();
+            p2.repaint();
             setVisible(true);
         }
 
     }
-
     public JTable getTableSelect(String query) throws SQLException {
         JTable t = new JTable();
         DefaultTableModel dm = new DefaultTableModel();
@@ -115,7 +115,6 @@ public class Look extends JFrame implements ActionListener{
         Pulisci.addActionListener(this);
         fornitore= new JTextField("fornitore");
         prezzo= new JTextField("prezzo");
-
         p2=new JPanel();
 
         p2.add(Select,BorderLayout.SOUTH);
@@ -127,7 +126,7 @@ public class Look extends JFrame implements ActionListener{
 
         setContentPane(p2);
         pack();
-        //setSize(600,200);
+        setSize(1600,1200);
         setVisible(true);
     }
 }

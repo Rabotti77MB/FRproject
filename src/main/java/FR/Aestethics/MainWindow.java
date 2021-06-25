@@ -27,7 +27,12 @@ public class MainWindow extends JFrame {
         Magazzino = new JButton("Gestione magazzino");
         //Magazzino.setBackground(Color.GRAY);
         Corrieri = new JButton("Miglior corriere");
+/*
+if(e.getSource() == prova){
+            SwingUtilities.invokeLater(Look::new);
+        }
 
+        */
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
