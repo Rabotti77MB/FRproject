@@ -8,22 +8,22 @@ public class InvoiceExcel {
     @ExcelRow
     private int rowIndex;
 
-    @ExcelCellName("Name")
-    private String name;
+    @ExcelCellName("row")
+    private String row;
 
-    @ExcelCellName("Amount")
-    private Double amount;
+    @ExcelCellName("cols")
+    private Double cols;
 
-    @ExcelCellName("Number")
-    private String number;
+    @ExcelCellName("num")
+    private String num;
 
-    @ExcelCellName("ReceivedDate")
-    private String receivedDate;
+    @ExcelCellName("boh")
+    private String boh;
 
     @Override
     public String toString() {
-        return "InvoiceExcel [rowIndex=" + rowIndex + ", name=" + name + ", amount=" + amount + ", number=" + number
-                + ", receivedDate=" + receivedDate + "]";
+        return "InvoiceExcel [rowIndex=" + rowIndex + ", row=" + row + ", cols=" + cols + ", num=" + num
+                + ", boh=" + boh + "]";
     }
 
 }

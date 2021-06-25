@@ -7,11 +7,8 @@ import com.poiji.bind.Poiji;
 public class ExcelDataToJavaListTest {
 
     public static void main(String[] args) {
-
         File file = new File("C:\\Users\\Giovanni\\Desktop\\PROVAPRO.xlsx");
         List<InvoiceExcel> invoices = Poiji.fromExcel(file, InvoiceExcel.class);
         System.out.println("Printing List Data: " +invoices);
-
     }
-
 }
