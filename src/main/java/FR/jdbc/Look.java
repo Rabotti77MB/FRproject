@@ -21,17 +21,21 @@ public class Look extends JFrame implements ActionListener{
     private final JButton Pulisci;
     private final JTextField fornitore;
     private final JTextField prezzo;
+    private final JButton ordina;
     private final JPanel p2 ;
     public void actionPerformed(ActionEvent e){
+
         if (e.getSource() == Select) {
-            String I_fornitore = fornitore.getText();
-            double I_prezzo = Double.parseDouble(prezzo.getText());
-            int r= I_fornitore.compareTo("");
-            if(r!=0 && I_prezzo!=0) {
+
+
                 /*codice del db per la select (vedi funzione già creata da davide) */
                 /*JOptionPane.showMessageDialog(this, "devo selezionare", "OPERAZIONE",
                         JOptionPane.WARNING_MESSAGE);*/
                 try {
+                    String I_fornitore = fornitore.getText();
+                    double I_prezzo = Double.parseDouble(prezzo.getText());
+                    int r= I_fornitore.compareTo("");
+
                     JPanel Attivo=new JPanel();
                     JPanel Passivo= new JPanel();
                    JScrollPane attivo= new JScrollPane(getTableSelect("SELECT * FROM persona  WHERE nome=\""+I_fornitore+"\""));
@@ -53,13 +57,14 @@ public class Look extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(this, "Database Error!");
                 }
 
-            }
+
 
         }
         if (e.getSource() == Pulisci) {
             p2.removeAll();
             p2.add(Select,BorderLayout.SOUTH);
             p2.add(Pulisci);
+            p2.add(ordina);
             p2.add(fornitore,BorderLayout.WEST);
             p2.add(prezzo,BorderLayout.EAST);
             setContentPane(p2);
@@ -69,7 +74,29 @@ public class Look extends JFrame implements ActionListener{
             p2.repaint();
             setVisible(true);
         }
+        if(e.getSource()==ordina){
+            try {
+                JPanel Attivo1=new JPanel();
+                JPanel Passivo1= new JPanel();
+                JScrollPane ordinatiP= new JScrollPane(getTableSelect("SELECT * FROM persona order by cognome"));
+                JScrollPane ordinatiA= new JScrollPane(getTableSelect("SELECT * FROM persona2 order by cognome"));
+                Attivo1.add(ordinatiA);
+                Passivo1.add(ordinatiP);
+                TitledBorder titleBorder1 = new TitledBorder("Passivo");
+                Passivo1.setBorder(titleBorder1);
+                TitledBorder titleBorder = new TitledBorder("Attivo");
+                Attivo1.setBorder(titleBorder);
 
+                p2.add(Attivo1);
+                p2.add(Passivo1);
+                p2.revalidate();
+                p2.repaint();
+            }
+            catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
+
+        }
     }
     public JTable getTableSelect(String query) throws SQLException {
         JTable t = new JTable();
@@ -116,7 +143,9 @@ public class Look extends JFrame implements ActionListener{
         fornitore= new JTextField("fornitore");
         prezzo= new JTextField("prezzo");
         p2=new JPanel();
-
+        ordina=new JButton("Ordina");
+        ordina.addActionListener(this);
+        p2.add(ordina);
         p2.add(Select,BorderLayout.SOUTH);
         p2.add(Pulisci);
         p2.add(fornitore,BorderLayout.WEST);
