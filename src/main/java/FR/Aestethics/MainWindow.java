@@ -1,11 +1,20 @@
 package FR.Aestethics;
 
+import FR.jdbc.DBManager;
+import FR.jdbc.Look;
+import FR.utils.Utils;
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
     private final JButton Payments;
     private final JButton Magazzino;
@@ -51,7 +60,7 @@ if(e.getSource() == prova){
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-        frame.setSize(420,420);
+        frame.setSize(420, 420);
 
         m = new JMenuBar();
         Menu = new JMenu("Menu");
@@ -64,15 +73,36 @@ if(e.getSource() == prova){
         JPanel p = new JPanel();
 
         p.add(Payments);
+        Payments.addActionListener(this);
         p.add(Magazzino);
         p.add(Corrieri);
 
         frame.add(p);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        /* if (e.getSource() == Payments) {
+            frame.getContentPane().removeAll();
+            Look Fatture = new Look();
+            add(Fatture);
+            setVisible(true);
+        } */
+        if(e.getSource() == Payments){
+            DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
+            try{
+                Statement statement = DBManager.getConnection().createStatement();
+            } catch(Exception e1){
+                e1.printStackTrace();
+            }
+            SwingUtilities.invokeLater(Look::new);
+        }
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainWindow::new);
     }
+
 }
 
 
