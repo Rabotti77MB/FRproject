@@ -19,7 +19,9 @@ public class Look extends JFrame implements ActionListener {
     private final JButton Select;
     private final JButton Pulisci;
     private final JTextField fornitore;
-    private final JTextField prezzo;
+    private final JTextField Data;
+    private final JTextField numero;
+    private final JTextField metodo_p;
     private final JButton ordina;
     private final JPanel p2;
     private final JPanel Risult;
@@ -36,21 +38,43 @@ public class Look extends JFrame implements ActionListener {
                         JOptionPane.WARNING_MESSAGE);*/
             try {
                 String I_fornitore = fornitore.getText();
-                double I_prezzo = Double.parseDouble(prezzo.getText());
-                int r = I_fornitore.compareTo("");
-
+                //double I_prezzo = Double.parseDouble(prezzo.getText());
+                int check_fornitore = I_fornitore.compareTo("");
+                String I_pagamento=metodo_p.getText();
+                int check_pagamento = I_pagamento.compareTo("");
+                String I_data= Data.getText();
+                int check_data=I_data.compareTo("");
+                String I_numero= numero.getText();
+                int check_numero=I_numero.compareTo("");
+                double numero1=0;
+                if(check_numero!=0){
+                    numero1 = Double.parseDouble(numero.getText());
+                }
                 JPanel Attivo = new JPanel();
                 JPanel Passivo = new JPanel();
-                JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\""));
-                //l.setSize(150,150);
-                Attivo.add(attivo);
-
-                JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\""));
-                Passivo.add(passivo);
                 TitledBorder titleBorder = new TitledBorder("Attivo");
                 Attivo.setBorder(titleBorder);
                 TitledBorder titleBorder1 = new TitledBorder("Passivo");
                 Passivo.setBorder(titleBorder1);
+                if(check_data != 0 && check_numero!=0 && check_fornitore!=0 && check_pagamento!=0){
+                    System.out.println(I_fornitore);
+                    System.out.println(I_pagamento);
+                    System.out.println(numero1);
+                    System.out.println(I_data);
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" "+
+                            "and Pagato = \"" + I_pagamento + "\""+
+                            "and Numero="+numero1+
+                            "and Data= \""+ I_data+"\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\" "+
+                            "and Pagato = \"" + I_pagamento + "\""+
+                            "and Numero="+numero1+
+                            "and Data= '"+ I_data+"'"));
+                    Passivo.add(passivo);
+                    Attivo.add(attivo);
+                }
+
+
+
                 Risult.add(Attivo, BorderLayout.WEST);
                 Risult.add(Passivo, BorderLayout.EAST);
                 Risult.revalidate();
@@ -75,7 +99,7 @@ public class Look extends JFrame implements ActionListener {
                 JPanel Attivo1 = new JPanel();
                 JPanel Passivo1 = new JPanel();
                 JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM passivo order by Data"));
-                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo order by Data"));
+                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo order by Data_pagamento"));
                 Attivo1.add(ordinatiA);
                 Passivo1.add(ordinatiP);
                 TitledBorder titleBorder1 = new TitledBorder("Passivo");
@@ -145,7 +169,6 @@ public class Look extends JFrame implements ActionListener {
         Pulisci = new JButton("Pulisci");
         Pulisci.addActionListener(this);
         fornitore = new JTextField("fornitore");
-        prezzo = new JTextField("prezzo");
         p2 = new JPanel();
         ordina = new JButton("Ordina");
         ordina.addActionListener(this);
@@ -154,14 +177,12 @@ public class Look extends JFrame implements ActionListener {
         Comandi.add(Pulisci,BorderLayout.SOUTH);
         Campi.add(fornitore,BorderLayout.NORTH);
 
-        JTextField P1 = new JTextField("P1");
-        JTextField P2 = new JTextField("P2");
-        JTextField P3 = new JTextField("P3");
-        Campi.add(P1);
-        Campi.add(P2);
-        Campi.add(P3);
-
-        Campi.add(prezzo,BorderLayout.NORTH);
+        Data = new JTextField("Data");
+        metodo_p= new JTextField("Pagamento");
+        numero = new JTextField("Numero");
+        Campi.add(Data);
+        Campi.add(metodo_p);
+        Campi.add(numero);
         Group.add(Comandi,BorderLayout.NORTH);
         Group.add(Campi,BorderLayout.SOUTH);
 
