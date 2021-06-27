@@ -59,7 +59,7 @@ public class MainWindow extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        ImageIcon image = new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
+        ImageIcon image = new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
         frame.setIconImage(image.getImage());
 
         frame.setVisible(true);
