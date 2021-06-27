@@ -1,6 +1,7 @@
 package FR.jdbc;
 
 import FR.utils.Utils;
+import org.apache.xmlbeans.impl.store.DomImpl;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -8,10 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class Look extends JFrame implements ActionListener {
@@ -22,6 +20,11 @@ public class Look extends JFrame implements ActionListener {
     private final JTextField prezzo;
     private final JButton ordina;
     private final JPanel p2;
+    private final JPanel Risult;
+    private final JPanel Comandi;
+    private final JPanel Campi;
+    private final JPanel Group;
+
 
     public void actionPerformed(ActionEvent e) {
 
@@ -46,10 +49,10 @@ public class Look extends JFrame implements ActionListener {
                 Attivo.setBorder(titleBorder);
                 TitledBorder titleBorder1 = new TitledBorder("Passivo");
                 Passivo.setBorder(titleBorder1);
-                p2.add(Attivo, BorderLayout.WEST);
-                p2.add(Passivo, BorderLayout.EAST);
-                p2.revalidate();
-                p2.repaint();
+                Risult.add(Attivo, BorderLayout.WEST);
+                Risult.add(Passivo, BorderLayout.EAST);
+                Risult.revalidate();
+                Risult.repaint();
 
             } catch (SQLException e1) {
                 JOptionPane.showMessageDialog(this, "Database Error!");
@@ -58,15 +61,9 @@ public class Look extends JFrame implements ActionListener {
 
         }
         if (e.getSource() == Pulisci) {
-            p2.removeAll();
-            p2.add(Select, BorderLayout.SOUTH);
-            p2.add(Pulisci);
-            p2.add(ordina);
-            p2.add(fornitore, BorderLayout.WEST);
-            p2.add(prezzo, BorderLayout.EAST);
-            setContentPane(p2);
+            Risult.removeAll();
             pack();
-            setSize(1600, 1200);
+            setSize(1500, 739);
             p2.revalidate();
             p2.repaint();
             setVisible(true);
@@ -84,10 +81,10 @@ public class Look extends JFrame implements ActionListener {
                 TitledBorder titleBorder = new TitledBorder("Attivo");
                 Attivo1.setBorder(titleBorder);
 
-                p2.add(Attivo1);
-                p2.add(Passivo1);
-                p2.revalidate();
-                p2.repaint();
+                Risult.add(Attivo1,BorderLayout.WEST);
+                Risult.add(Passivo1,BorderLayout.EAST);
+                Risult.revalidate();
+                Risult.repaint();
             } catch (SQLException e2) {
                 JOptionPane.showMessageDialog(this, "Database Error!");
             }
@@ -134,6 +131,10 @@ public class Look extends JFrame implements ActionListener {
     }
 
     public Look() {
+        Group=new JPanel(new BorderLayout());
+        Comandi = new JPanel(new GridLayout(1, 3));
+        Campi = new JPanel(new GridLayout(1,5));
+        Risult = new JPanel(new BorderLayout());
         Select = new JButton("Seleziona");
         Select.addActionListener(this);
         Pulisci = new JButton("Pulisci");
@@ -143,16 +144,36 @@ public class Look extends JFrame implements ActionListener {
         p2 = new JPanel();
         ordina = new JButton("Ordina");
         ordina.addActionListener(this);
-        p2.add(ordina);
-        p2.add(Select, BorderLayout.SOUTH);
-        p2.add(Pulisci);
-        p2.add(fornitore, BorderLayout.WEST);
-        p2.add(prezzo, BorderLayout.EAST);
+       // p2.setSize(1500,1100);
+        Comandi.add(ordina,BorderLayout.SOUTH);
+        Comandi.add(Select,BorderLayout.SOUTH);
+        Comandi.add(Pulisci,BorderLayout.SOUTH);
+        Campi.add(fornitore,BorderLayout.NORTH);
 
+        JTextField P1 = new JTextField("P1");
+        JTextField P2 = new JTextField("P2");
+        JTextField P3 = new JTextField("P3");
+        Campi.add(P1);
+        Campi.add(P2);
+        Campi.add(P3);
+
+        Campi.add(prezzo,BorderLayout.NORTH);
+        Group.add(Comandi,BorderLayout.NORTH);
+        Group.add(Campi,BorderLayout.SOUTH);
+
+
+        //Risult.setSize(200,200);
+        TitledBorder risultati=new TitledBorder("Risultati");
+        Risult.setBorder(risultati);
+        TitledBorder comandi= new TitledBorder("Comandi");
+        Comandi.setBorder(comandi);
+        Risult.setLocation(350,200);
+        p2.add(Group,BorderLayout.SOUTH);
+        p2.add(Risult,BorderLayout.NORTH);
 
         setContentPane(p2);
         pack();
-        setSize(1600, 1200);
+        setSize(1500, 739);
         setVisible(true);
     }
 }
