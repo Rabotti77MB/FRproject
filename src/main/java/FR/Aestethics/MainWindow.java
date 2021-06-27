@@ -32,16 +32,21 @@ public class MainWindow extends JFrame implements ActionListener {
         frame.setTitle("MBE: gestionale d'impresa");
         // Nome=new JTextArea("MBE");
         Payments = new JButton("Gestione fatture");
-        //Payments.setBackground(Color.RED);
-        Magazzino = new JButton("Gestione magazzino");
-        //Magazzino.setBackground(Color.GRAY);
-        Corrieri = new JButton("Miglior corriere");
-/*
-if(e.getSource() == prova){
-            SwingUtilities.invokeLater(Look::new);
-        }
+        Payments.setBackground(Color.BLACK);
+        Payments.setPreferredSize(new Dimension(150,150));
+        Payments.setFont(new Font("Arial", Font.PLAIN, 15));
+        Payments.setForeground(Color.white);
 
-        */
+        Magazzino = new JButton("Magazzino");
+        Magazzino.setBackground(Color.RED);
+        Magazzino.setPreferredSize(new Dimension(150,150));
+        Magazzino.setFont(new Font("Arial", Font.PLAIN, 15));
+        Magazzino.setForeground(Color.black);
+
+        Corrieri = new JButton("Miglior corriere");
+        Corrieri.setPreferredSize(new Dimension(150,150));
+        Corrieri.setFont(new Font("Arial", Font.PLAIN, 15));
+
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -59,7 +64,7 @@ if(e.getSource() == prova){
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setSize(420, 420);
 
         m = new JMenuBar();
@@ -76,8 +81,8 @@ if(e.getSource() == prova){
         Payments.addActionListener(this);
         p.add(Magazzino);
         p.add(Corrieri);
-
         frame.add(p);
+
     }
 
     @Override
