@@ -6,9 +6,11 @@ import org.apache.xmlbeans.impl.store.DomImpl;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.*;
 
 
@@ -80,7 +82,6 @@ public class Look extends JFrame implements ActionListener {
                 Passivo1.setBorder(titleBorder1);
                 TitledBorder titleBorder = new TitledBorder("Attivo");
                 Attivo1.setBorder(titleBorder);
-
                 Risult.add(Attivo1,BorderLayout.WEST);
                 Risult.add(Passivo1,BorderLayout.EAST);
                 Risult.revalidate();
@@ -116,10 +117,14 @@ public class Look extends JFrame implements ActionListener {
             dm.addRow(row);
         }
 
-        t.setModel(dm);
-        t.setGridColor(Color.black);
 
-        // t.setSize(100,50);
+
+        t.setModel(dm);
+
+        t.setGridColor(Color.black);
+        t.setRowHeight(30);
+        t.setAutoResizeMode(0);
+
         return t;
     }
 
@@ -144,7 +149,6 @@ public class Look extends JFrame implements ActionListener {
         p2 = new JPanel();
         ordina = new JButton("Ordina");
         ordina.addActionListener(this);
-       // p2.setSize(1500,1100);
         Comandi.add(ordina,BorderLayout.SOUTH);
         Comandi.add(Select,BorderLayout.SOUTH);
         Comandi.add(Pulisci,BorderLayout.SOUTH);
@@ -161,13 +165,8 @@ public class Look extends JFrame implements ActionListener {
         Group.add(Comandi,BorderLayout.NORTH);
         Group.add(Campi,BorderLayout.SOUTH);
 
-
-        //Risult.setSize(200,200);
-        TitledBorder risultati=new TitledBorder("Risultati");
-        Risult.setBorder(risultati);
         TitledBorder comandi= new TitledBorder("Comandi");
-        Comandi.setBorder(comandi);
-        Risult.setLocation(350,200);
+        Group.setBorder(comandi);
         p2.add(Group,BorderLayout.PAGE_END);
         p2.add(Risult,BorderLayout.NORTH);
 
