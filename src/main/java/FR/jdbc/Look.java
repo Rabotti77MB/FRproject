@@ -39,11 +39,11 @@ public class Look extends JFrame implements ActionListener {
 
                 JPanel Attivo = new JPanel();
                 JPanel Passivo = new JPanel();
-                JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM persona  WHERE nome=\"" + I_fornitore + "\""));
+                JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\""));
                 //l.setSize(150,150);
                 Attivo.add(attivo);
 
-                JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM persona2  WHERE nome=\"" + I_fornitore + "\""));
+                JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\""));
                 Passivo.add(passivo);
                 TitledBorder titleBorder = new TitledBorder("Attivo");
                 Attivo.setBorder(titleBorder);
@@ -72,8 +72,8 @@ public class Look extends JFrame implements ActionListener {
             try {
                 JPanel Attivo1 = new JPanel();
                 JPanel Passivo1 = new JPanel();
-                JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM persona order by cognome"));
-                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM persona2 order by cognome"));
+                JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM passivo order by Data"));
+                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo order by Data"));
                 Attivo1.add(ordinatiA);
                 Passivo1.add(ordinatiP);
                 TitledBorder titleBorder1 = new TitledBorder("Passivo");
@@ -168,7 +168,7 @@ public class Look extends JFrame implements ActionListener {
         TitledBorder comandi= new TitledBorder("Comandi");
         Comandi.setBorder(comandi);
         Risult.setLocation(350,200);
-        p2.add(Group,BorderLayout.SOUTH);
+        p2.add(Group,BorderLayout.PAGE_END);
         p2.add(Risult,BorderLayout.NORTH);
 
         setContentPane(p2);
