@@ -5,14 +5,14 @@ import FR.jdbc.Look;
 import FR.utils.Utils;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Statement;
-import java.util.Scanner;
 
 public class MainWindow extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
@@ -23,10 +23,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
     JFrame frame = new JFrame();
 
-    JMenuBar m;
-    JMenu Menu;
-    JMenuItem i1, i2, i3;
-
+    // JMenuBar m;
+    // JMenu Menu;
+    // JMenuItem i1, i2, i3;
 
     public MainWindow() {
         frame.setTitle("MBE: gestionale d'impresa");
@@ -68,7 +67,7 @@ public class MainWindow extends JFrame implements ActionListener {
         frame.setResizable(false);
         frame.setSize(400, 400);
 
-        /** m = new JMenuBar();
+        /* m = new JMenuBar();
          Menu = new JMenu("Menu");
          i1 = new JMenuItem("Item 1");
          Menu.add(i1);
@@ -85,7 +84,7 @@ public class MainWindow extends JFrame implements ActionListener {
         p.add(Corrieri);
         frame.add(p);
 
-        /** try JFileChooser */
+        /* try JFileChooser */
         JMenuBar menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
         JMenu mntest = new JMenu("File");
@@ -98,7 +97,9 @@ public class MainWindow extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == mi) {
                     JFileChooser fileChooser = new JFileChooser();
-                    /** default JFileChooser is okay from Documents */
+                    /* default JFileChooser is okay from Documents */
+                    FileFilter filter = new FileNameExtensionFilter("Excel File","xlsx");
+                    fileChooser.setFileFilter(filter);
                     int a = fileChooser.showOpenDialog(null);
 
                     if (a == JFileChooser.APPROVE_OPTION) {

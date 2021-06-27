@@ -128,23 +128,26 @@ public class BasicOperations {
      * 100" This is useful for very large tables
      */
     public void testSelectAll(String s) throws SQLException {
-        ResultSet rs = statement.executeQuery("SELECT * FROM "+s+";  ");
+        ResultSet rs = statement.executeQuery("SELECT * FROM " + s + ";  ");
         while (rs.next()) {
             printRow(rs);
         }
     }
+
     public void testInsert() throws SQLException {
         System.out.print("sto eseguendo: insert into persona (nome,cognome,ruolo) values (\"zio\",\"fabrizio\", \"difensore\"); ");
         statement.executeUpdate(
                 "insert into persona (nome,cognome,ruolo) values (\"zio\",\"fabrizio\", \"difensore\"); ");
 
     }
-    public void testDelete(String nomecol ,String val) throws SQLException {
-        System.out.print("sto eseguendo: DELETE FROM persona WHERE "+  nomecol+ "='"+val+"'; ");
+
+    public void testDelete(String nomecol, String val) throws SQLException {
+        System.out.print("sto eseguendo: DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
         statement.executeUpdate(
-                "DELETE FROM persona WHERE "+  nomecol+ "='"+val+"'; ");
+                "DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
 
     }
+
     /**
      * Update the content of the book table
      */
@@ -208,11 +211,12 @@ public class BasicOperations {
      */
     public void printRow(ResultSet rs) throws SQLException {
         System.out.println("nome=" + rs.getString("nome") + ", cognome=" + rs.getString("cognome") + ", ruolo="
-                + rs.getString("ruolo") );
+                + rs.getString("ruolo"));
 
     }
+
     public void printRowNome(ResultSet rs) throws SQLException {
-        System.out.println("nome=" + rs.getString("nome") );
+        System.out.println("nome=" + rs.getString("nome"));
 
     }
 }

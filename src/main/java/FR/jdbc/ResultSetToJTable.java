@@ -77,14 +77,14 @@ public class ResultSetToJTable extends JFrame {
     }
 
     public static void main(String[] args) {
-       try {
+        try {
 
             BasicOperations op = new BasicOperations();
             //op.testDelete("cognome","tomori");
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }
-       new ResultSetToJTable();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        new ResultSetToJTable();
 
     }
 }
