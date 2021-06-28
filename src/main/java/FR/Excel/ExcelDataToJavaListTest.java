@@ -14,8 +14,8 @@ public class ExcelDataToJavaListTest {
     }
 
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\Giovanni\\Desktop\\ProgettoFR\\PROVAPRO.xlsx");
-        System.out.printf("File %s",file);
+        File file = new File("C:\\Users\\Giovanni\\Desktop\\PROVAVEROEX.xlsx");
+        System.out.printf("File %s\n",file);
         List<InvoiceExcel> invoices = Poiji.fromExcel(file, InvoiceExcel.class);
         System.out.println("Printing List Data: " +invoices);
     }

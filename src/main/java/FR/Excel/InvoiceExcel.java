@@ -10,53 +10,53 @@ public class InvoiceExcel {
     @ExcelRow
     private int rowIndex;
 
-    @ExcelCellName("Azienda")
+    @ExcelCellName("AZIENDA")
     private String Azienda;
 
-    @ExcelCellName("Data")
+    @ExcelCellName("DATA")
     private Date Data;
 
-    @ExcelCellName("Numero")
-    private int Numero;
+    @ExcelCellName("FATT.NUMERO")
+    private Integer Numero;
 
     @ExcelCellName("IMPORTO")
-    private int Importo;
+    private Double Importo;
 
-    @ExcelCellName("Fattura Elettronica")
-    private int fattElettronica;
+    @ExcelCellName("FT.ELETT CARICATA")
+    private Integer fattElettronica;
 
-    @ExcelCellName("Bollo")
-    private int bollo;
+    @ExcelCellName("BOLLO")
+    private Integer bollo;
 
-    @ExcelCellName("Scadenza")
+    @ExcelCellName("SCADENZA")
     private Date scadenza;
 
-    @ExcelCellName("Incasso")
-    private int incasso;
+    @ExcelCellName("INCASSO")
+    private Integer incasso;
 
-    @ExcelCellName("Pagato")
+    @ExcelCellName("PAGATO")
     private String pagato;
 
-    @ExcelCellName("Banca")
+    @ExcelCellName("BANCA")
     private String banca;
 
-    @ExcelCellName("Totale")
-    private int totale;
+    @ExcelCellName("TOTALE")
+    private Integer totale;
 
-    @ExcelCellName("Data pagamento")
+    @ExcelCellName("DATA DI PAGAMENTO")
     private Date dPagamento;
 
-    @ExcelCellName("Note")
-    private String note;
-
-    @ExcelCellName("Controllo")
+    @ExcelCellName("CONTROLLO")
     private String controllo;
+
+    @ExcelCellName("NOTE")
+    private String note;
 
     @Override
     public String toString() {
         return "InvoiceExcel [rowIndex=" + rowIndex + ", Azienda=" + Azienda + ", Data=" + Data + ", Numero=" + Numero
                 + ", Importo=" + Importo + ", Fattura Elettronica=" + fattElettronica + ", Bollo=" + bollo + ", Scadenza=" + scadenza + ", Incasso=" + incasso +
-                ", Pagato=" + pagato + ", Banca=" + banca + ", Totale=" + totale + ", Data Pagamento=" + dPagamento + ", Note=" + note + ", Controllo=" + controllo + "]";
+                ", Pagato=" + pagato + ", Banca=" + banca + ", Totale=" + totale + ", Data Pagamento=" + dPagamento + ", Note=" + note + ", Controllo=" + controllo + "]\n";
     }
 
 }
