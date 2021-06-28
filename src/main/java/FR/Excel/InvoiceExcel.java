@@ -8,16 +8,16 @@ public class InvoiceExcel {
     @ExcelRow
     private int rowIndex;
 
-    @ExcelCellName("row")
+    @ExcelCellName("AZIENDA")
     private String row;
 
-    @ExcelCellName("cols")
+    @ExcelCellName("DATA")
     private Double cols;
 
-    @ExcelCellName("num")
+    @ExcelCellName("FATT.NUMERO")
     private String num;
 
-    @ExcelCellName("boh")
+    @ExcelCellName("IMPORTO")
     private String boh;
 
     @Override
