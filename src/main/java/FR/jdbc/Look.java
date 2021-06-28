@@ -72,7 +72,7 @@ public class Look extends JFrame implements ActionListener {
                     Passivo.add(passivo);
                     Attivo.add(attivo);
                 }
-
+                /*c*/
 
 
                 Risult.add(Attivo, BorderLayout.WEST);
