@@ -147,7 +147,7 @@ public class Look extends JFrame implements ActionListener {
 
         t.setGridColor(Color.black);
         t.setRowHeight(30);
-        t.setAutoResizeMode(0);
+        t.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         return t;
     }
