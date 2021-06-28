@@ -46,6 +46,7 @@ public class MainWindow extends JFrame implements ActionListener {
         Corrieri.setPreferredSize(new Dimension(150, 150));
         Corrieri.setFont(new Font("Arial", Font.PLAIN, 15));
 
+        // set Look and Feel
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -67,21 +68,14 @@ public class MainWindow extends JFrame implements ActionListener {
         frame.setResizable(false);
         frame.setSize(400, 400);
 
-        /* m = new JMenuBar();
-         Menu = new JMenu("Menu");
-         i1 = new JMenuItem("Item 1");
-         Menu.add(i1);
-         m.add(Menu);
-         // m.setUI(new MetalMenuBarUI()); */
-
         JPanel p = new JPanel();
-
-        // p.add(m);
 
         p.add(Payments);
         Payments.addActionListener(this);
         p.add(Magazzino);
+        Magazzino.addActionListener(this);
         p.add(Corrieri);
+        Corrieri.addActionListener(this);
         frame.add(p);
 
         /* try JFileChooser */
@@ -117,6 +111,9 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
     @Override
+    // change page to Look setting DB connection
+    // change page to see warehouse situation
+    // change page to display best way to ship an object
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Payments) {
             DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
@@ -126,6 +123,13 @@ public class MainWindow extends JFrame implements ActionListener {
                 e1.printStackTrace();
             }
             SwingUtilities.invokeLater(Look::new);
+        }
+
+        if(e.getSource()==Magazzino){
+            System.out.println("Guardiamo il magazzino");
+        }
+        if(e.getSource()==Corrieri){
+            System.out.println("Best Corriere");
         }
     }
 

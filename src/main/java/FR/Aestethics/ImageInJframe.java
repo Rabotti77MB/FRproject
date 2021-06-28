@@ -20,8 +20,9 @@ public class ImageInJframe extends JFrame {
         while(true) {
             int delay = 5000; // Delay in milliseconds
             timer = new Timer(delay, e -> {
-                System.out.println("Delay");
+                // System.out.println("Delay");
                 frame.setVisible(false); // Hide the first frame
+                // frame.validate();
                 if (count == 0) {
                     SwingUtilities.invokeLater(MainWindow::new);
                     count++;
