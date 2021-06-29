@@ -19,6 +19,7 @@ public class ImageInJframe extends JFrame {
         frame.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        // set delay with timer just to simulate a loading moment
         while(true) {
             int delay = 5000; // Delay in milliseconds
             timer = new Timer(delay, e -> {
