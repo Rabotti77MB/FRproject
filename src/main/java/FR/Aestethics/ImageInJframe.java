@@ -10,6 +10,8 @@ public class ImageInJframe extends JFrame {
     private int count = 0;
 
     public ImageInJframe() {
+        ImageIcon image = new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
+        frame.setIconImage(image.getImage());
         panel = new ImageImplement(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg").getImage());
         frame.add(panel);
         frame.setVisible(true);

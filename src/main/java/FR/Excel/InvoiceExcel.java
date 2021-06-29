@@ -23,10 +23,10 @@ public class InvoiceExcel {
     private Double Importo;
 
     @ExcelCellName("FT.ELETT CARICATA")
-    private Integer fattElettronica;
+    private String fattElettronica;
 
     @ExcelCellName("BOLLO")
-    private Integer bollo;
+    private String bollo;
 
     @ExcelCellName("SCADENZA")
     private Date scadenza;

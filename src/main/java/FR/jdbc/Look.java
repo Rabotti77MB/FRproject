@@ -29,7 +29,6 @@ public class Look extends JFrame implements ActionListener {
     private final JPanel Campi;
     private final JPanel Group;
 
-
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == Select) {
