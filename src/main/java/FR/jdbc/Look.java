@@ -40,6 +40,7 @@ public class Look extends JFrame implements ActionListener {
                 //double I_prezzo = Double.parseDouble(prezzo.getText());
                 int check_fornitore = I_fornitore.compareTo("");
                 String I_pagamento=metodo_p.getText();
+
                 int check_pagamento = I_pagamento.compareTo("");
                 String I_data= Data.getText();
                 int check_data=I_data.compareTo("");
@@ -55,11 +56,9 @@ public class Look extends JFrame implements ActionListener {
                 Attivo.setBorder(titleBorder);
                 TitledBorder titleBorder1 = new TitledBorder("Passivo");
                 Passivo.setBorder(titleBorder1);
+
                 if(check_data != 0 && check_numero!=0 && check_fornitore!=0 && check_pagamento!=0){
-                    System.out.println(I_fornitore);
-                    System.out.println(I_pagamento);
-                    System.out.println(numero1);
-                    System.out.println(I_data);
+
                     JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" "+
                             "and Pagato = \"" + I_pagamento + "\""+
                             "and Numero="+numero1+
@@ -71,7 +70,30 @@ public class Look extends JFrame implements ActionListener {
                     Passivo.add(passivo);
                     Attivo.add(attivo);
                 }
-                /*c*/
+                else if(check_data!=0){
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Data= \""+ I_data+"\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Data= \""+ I_data+"\""));
+                    Passivo.add(passivo);
+                    Attivo.add(attivo);
+                }
+                else if(check_numero!=0){
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Numero="+numero1));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Numero="+numero1));
+                    Passivo.add(passivo);
+                    Attivo.add(attivo);
+                }
+                else if(check_fornitore!=0){
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" "+"order by Data"));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\" "+"order by Data"));
+                    Passivo.add(passivo);
+                    Attivo.add(attivo);
+                }
+                else if(check_pagamento!=0){
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Pagato = \"" + I_pagamento + "\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Pagato = \"" + I_pagamento + "\""));
+                    Passivo.add(passivo);
+                    Attivo.add(attivo);
+                }
 
 
                 Risult.add(Attivo, BorderLayout.WEST);
@@ -88,7 +110,7 @@ public class Look extends JFrame implements ActionListener {
         if (e.getSource() == Pulisci) {
             Risult.removeAll();
             pack();
-            setSize(1500, 739);
+            setSize(1200, 739);
             p2.revalidate();
             p2.repaint();
             setVisible(true);
@@ -192,7 +214,7 @@ public class Look extends JFrame implements ActionListener {
 
         setContentPane(p2);
         pack();
-        setSize(1500, 739);
+        setSize(1200, 739);
         setVisible(true);
     }
 }

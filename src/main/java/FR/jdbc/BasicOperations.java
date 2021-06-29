@@ -63,13 +63,18 @@ public class BasicOperations {
 
     public void run() {
 
+        /*try {
+            System.out.println("\n- scrollable...");
+            testInsertPassivo("RAbboINsert","2021-08-01",10,"si",123456,"$",200,"assegno","Monte Unicredit",2525,"nota","contr","anomal");
+        } catch (SQLException a) {
+            System.out.println("Something went wrong... " + a.getMessage());
+        }*/
         try {
             System.out.println("\n- scrollable...");
-            testScrollable();
+            testInsertAttivo("Inserta","2021-08-01",10,1000,"si",100,"2021-10-20",30,"contanti","Unicredito",520,"2021-12-31","note","anomal");
         } catch (SQLException a) {
             System.out.println("Something went wrong... " + a.getMessage());
         }
-
 
 
         /*
@@ -134,11 +139,15 @@ public class BasicOperations {
         }
     }
 
-    public void testInsert() throws SQLException {
-        System.out.print("sto eseguendo: insert into persona (nome,cognome,ruolo) values (\"zio\",\"fabrizio\", \"difensore\"); ");
-        statement.executeUpdate(
-                "insert into persona (nome,cognome,ruolo) values (\"zio\",\"fabrizio\", \"difensore\"); ");
+    public void testInsertPassivo(String Azienda, String DATE, int Num, String Fattura_El, int importo, String Valuta,int Incasso,String Pagato,String Banca,int Totale,String Note, String Controllo, String Anomalie) throws SQLException {
+        System.out.print("sto eseguendo: insert into passivo  values (\""+Azienda+"\",'"+DATE+"',"+Num+",\""+Fattura_El+"\","+importo+",\""+Valuta+"\","+Incasso+",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Note+"\",\""+Controllo+"\",\""+Anomalie+"\"); ");
+        statement.executeUpdate("insert into passivo  values (\""+Azienda+"\",'"+DATE+"',"+Num+",\""+Fattura_El+"\","+importo+",\""+Valuta+"\","+Incasso+",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Note+"\",\""+Controllo+"\",\""+Anomalie+"\"); ");
 
+    }
+    public void testInsertAttivo(String Azienda, String DATE, int Num, int importo, String Fattura_El,  int Bollo,String Scadenza,int Incasso,String Pagato,String Banca,int Totale, String Data_pagamento, String Note, String Controllo) throws SQLException {
+        System.out.print("sto eseguendo: insert into attivo  values (\""+Azienda+"\",'"+DATE+"',"+Num+","+importo+",\""+Fattura_El+"\","+Bollo+",'"+Scadenza+"',"+Incasso+",\""+Pagato+"\",\""+Banca+"\","+Totale+",'"+Data_pagamento+"',\""+Note+"\",\" "+Controllo+"\");");
+        //statement.executeUpdate("insert into attivo  values (\""+Azienda+"\",'"+DATE+"',"+Num+",\""+Fattura_El+"\","+importo+",\""+Valuta+"\","+Incasso+",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Note+"\",\""+Controllo+"\",\""+Anomalie+"\"); ");
+        statement.executeUpdate(" insert into attivo  values (\""+Azienda+"\",'"+DATE+"',"+Num+","+importo+",\""+Fattura_El+"\","+Bollo+",'"+Scadenza+"',"+Incasso+",\""+Pagato+"\",\""+Banca+"\","+Totale+",'"+Data_pagamento+"',\""+Note+"\",\""+Controllo+"\");");
     }
 
     public void testDelete(String nomecol, String val) throws SQLException {
@@ -210,8 +219,12 @@ public class BasicOperations {
      * Prints the current ResultSet row
      */
     public void printRow(ResultSet rs) throws SQLException {
-        System.out.println("nome=" + rs.getString("nome") + ", cognome=" + rs.getString("cognome") + ", ruolo="
-                + rs.getString("ruolo"));
+        System.out.println( rs.getString("Azienda") + rs.getString("Data") +
+                rs.getString("Numero")+     rs.getString("Fattura_Elettronica")+ rs.getString("Importo")+
+                rs.getString("Valuta")+ rs.getString("Incasso")+
+                rs.getString("Pagato")+ rs.getString("Banca")+
+                rs.getString("Totale")+ rs.getString("Note")+
+                rs.getString("Controllo")+ rs.getString("Anomalie_note") );
 
     }
 
