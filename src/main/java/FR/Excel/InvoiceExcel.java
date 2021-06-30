@@ -11,50 +11,51 @@ import java.util.Date;
 @ExcelSheet("Attivo")
 public class InvoiceExcel {
 
+
     @ExcelRow
     private int rowIndex;
 
     @ExcelCell(0)
-    private String Azienda;
+    public   String Azienda;
 
     @ExcelCell(1)
-    private Date Data;
+    public  String Data;
 
     @ExcelCell(2)
-    private Integer Numero;
+    public  int Numero;
 
     @ExcelCell(3)
-    private Double Importo;
+    public  Double Importo;
 
     @ExcelCell(4)
-    private String fattElettronica;
+    public  String fattElettronica;
 
     @ExcelCell(5)
-    private String bollo;
+    public  String bollo;
 
     @ExcelCell(6)
-    private Date scadenza;
+    public  String scadenza;
 
     @ExcelCell(7)
-    private String incasso;
+    public  String incasso;
 
     @ExcelCell(8)
-    private String pagato;
+    public  String pagato;
 
     @ExcelCell(9)
-    private String banca;
+    public  String banca;
 
     @ExcelCell(10)
-    private Double totale;
+    public  Double totale;
 
     @ExcelCell(11)
-    private Date dPagamento;
+    public  String dPagamento;
 
     @ExcelCell(12)
-    private Double controllo;
+    public  Double controllo;
 
     @ExcelCell(13)
-    private String note;
+    public  String note;
 
     @Override
     public String toString() {

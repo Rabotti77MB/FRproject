@@ -89,8 +89,8 @@ public class Look extends JFrame implements ActionListener {
                     Attivo.add(attivo);
                 }
                 else if(check_pagamento!=0){
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Pagato = \"" + I_pagamento + "\""));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Pagato = \"" + I_pagamento + "\""));
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Incasso = \"" + I_pagamento + "\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Incasso = \"" + I_pagamento + "\""));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
                 }
