@@ -1,17 +1,17 @@
 package FR.jdbc;
 
 import FR.utils.Utils;
-import org.apache.xmlbeans.impl.store.DomImpl;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class Look extends JFrame implements ActionListener {
@@ -39,15 +39,15 @@ public class Look extends JFrame implements ActionListener {
                 String I_fornitore = fornitore.getText();
                 //double I_prezzo = Double.parseDouble(prezzo.getText());
                 int check_fornitore = I_fornitore.compareTo("");
-                String I_pagamento=metodo_p.getText();
+                String I_pagamento = metodo_p.getText();
 
                 int check_pagamento = I_pagamento.compareTo("");
-                String I_data= Data.getText();
-                int check_data=I_data.compareTo("");
-                String I_numero= numero.getText();
-                int check_numero=I_numero.compareTo("");
-                double numero1=0;
-                if(check_numero!=0){
+                String I_data = Data.getText();
+                int check_data = I_data.compareTo("");
+                String I_numero = numero.getText();
+                int check_numero = I_numero.compareTo("");
+                double numero1 = 0;
+                if (check_numero != 0) {
                     numero1 = Double.parseDouble(numero.getText());
                 }
                 JPanel Attivo = new JPanel();
@@ -57,38 +57,34 @@ public class Look extends JFrame implements ActionListener {
                 TitledBorder titleBorder1 = new TitledBorder("Passivo");
                 Passivo.setBorder(titleBorder1);
 
-                if(check_data != 0 && check_numero!=0 && check_fornitore!=0 && check_pagamento!=0){
+                if (check_data != 0 && check_numero != 0 && check_fornitore != 0 && check_pagamento != 0) {
 
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" "+
-                            "and Pagato = \"" + I_pagamento + "\""+
-                            "and Numero="+numero1+
-                            "and Data= \""+ I_data+"\""));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\" "+
-                            "and Pagato = \"" + I_pagamento + "\""+
-                            "and Numero="+numero1+
-                            "and Data= '"+ I_data+"'"));
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" " +
+                            "and Pagato = \"" + I_pagamento + "\"" +
+                            "and Numero=" + numero1 +
+                            "and Data= \"" + I_data + "\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\" " +
+                            "and Pagato = \"" + I_pagamento + "\"" +
+                            "and Numero=" + numero1 +
+                            "and Data= '" + I_data + "'"));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
-                }
-                else if(check_data!=0){
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Data= \""+ I_data+"\""));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Data= \""+ I_data+"\""));
+                } else if (check_data != 0) {
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Data= \"" + I_data + "\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Data= \"" + I_data + "\""));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
-                }
-                else if(check_numero!=0){
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Numero="+numero1));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Numero="+numero1));
+                } else if (check_numero != 0) {
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Numero=" + numero1));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Numero=" + numero1));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
-                }
-                else if(check_fornitore!=0){
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" "+"order by Data"));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\" "+"order by Data"));
+                } else if (check_fornitore != 0) {
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" " + "order by Data"));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\" " + "order by Data"));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
-                }
-                else if(check_pagamento!=0){
+                } else if (check_pagamento != 0) {
                     JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Incasso = \"" + I_pagamento + "\""));
                     JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Incasso = \"" + I_pagamento + "\""));
                     Passivo.add(passivo);
@@ -127,8 +123,8 @@ public class Look extends JFrame implements ActionListener {
                 Passivo1.setBorder(titleBorder1);
                 TitledBorder titleBorder = new TitledBorder("Attivo");
                 Attivo1.setBorder(titleBorder);
-                Risult.add(Attivo1,BorderLayout.WEST);
-                Risult.add(Passivo1,BorderLayout.EAST);
+                Risult.add(Attivo1, BorderLayout.WEST);
+                Risult.add(Passivo1, BorderLayout.EAST);
                 Risult.revalidate();
                 Risult.repaint();
             } catch (SQLException e2) {
@@ -163,7 +159,6 @@ public class Look extends JFrame implements ActionListener {
         }
 
 
-
         t.setModel(dm);
 
         t.setGridColor(Color.black);
@@ -181,9 +176,9 @@ public class Look extends JFrame implements ActionListener {
     }
 
     public Look() {
-        Group=new JPanel(new BorderLayout());
+        Group = new JPanel(new BorderLayout());
         Comandi = new JPanel(new GridLayout(1, 3));
-        Campi = new JPanel(new GridLayout(1,5));
+        Campi = new JPanel(new GridLayout(1, 5));
         Risult = new JPanel(new BorderLayout());
         Select = new JButton("Seleziona");
         Select.addActionListener(this);
@@ -193,24 +188,24 @@ public class Look extends JFrame implements ActionListener {
         p2 = new JPanel();
         ordina = new JButton("Ordina");
         ordina.addActionListener(this);
-        Comandi.add(ordina,BorderLayout.SOUTH);
-        Comandi.add(Select,BorderLayout.SOUTH);
-        Comandi.add(Pulisci,BorderLayout.SOUTH);
-        Campi.add(fornitore,BorderLayout.NORTH);
+        Comandi.add(ordina, BorderLayout.SOUTH);
+        Comandi.add(Select, BorderLayout.SOUTH);
+        Comandi.add(Pulisci, BorderLayout.SOUTH);
+        Campi.add(fornitore, BorderLayout.NORTH);
 
         Data = new JTextField("Data");
-        metodo_p= new JTextField("Pagamento");
+        metodo_p = new JTextField("Pagamento");
         numero = new JTextField("Numero");
         Campi.add(Data);
         Campi.add(metodo_p);
         Campi.add(numero);
-        Group.add(Comandi,BorderLayout.NORTH);
-        Group.add(Campi,BorderLayout.SOUTH);
+        Group.add(Comandi, BorderLayout.NORTH);
+        Group.add(Campi, BorderLayout.SOUTH);
 
-        TitledBorder comandi= new TitledBorder("Comandi");
+        TitledBorder comandi = new TitledBorder("Comandi");
         Group.setBorder(comandi);
-        p2.add(Group,BorderLayout.PAGE_END);
-        p2.add(Risult,BorderLayout.NORTH);
+        p2.add(Group, BorderLayout.PAGE_END);
+        p2.add(Risult, BorderLayout.NORTH);
 
         setContentPane(p2);
         pack();

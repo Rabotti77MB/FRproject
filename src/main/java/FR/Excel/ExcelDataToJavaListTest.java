@@ -1,12 +1,12 @@
 package FR.Excel;
 
+import FR.jdbc.BasicOperations;
+import com.poiji.bind.Poiji;
+import com.poiji.option.PoijiOptions;
+
 import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
-import FR.jdbc.BasicOperations;
-import com.poiji.bind.Poiji;
-import com.poiji.bind.mapping.PoijiNumberFormat;
-import com.poiji.option.PoijiOptions;
 
 public class ExcelDataToJavaListTest  {
 BasicOperations Aiuto;
@@ -22,20 +22,27 @@ BasicOperations Aiuto;
         // it should take the selected xlsx file and convert to list then add this list to a new db
         System.out.printf("File %s\n", file);
         PoijiOptions options = PoijiOptions.PoijiOptionsBuilder.settings(2).build();
-        PoijiOptions.PoijiOptionsBuilder.settings().ignoreWhitespaces(true);
-        PoijiOptions.PoijiOptionsBuilder.settings().caseInsensitive(true);
 
-        PoijiNumberFormat numberFormat = new PoijiNumberFormat();
-        numberFormat.putNumberFormat((short) 3, "");
-
-        List<InvoiceExcel> invoices = Poiji.fromExcel(file, InvoiceExcel.class, options);
+        List<InvoiceExcelAttivo> invoicesA = Poiji.fromExcel(file, InvoiceExcelAttivo.class, options);
         // just DEBUG!
 
-        System.out.println("Printing List Data: \n" + invoices);
-       for(InvoiceExcel p : invoices){
+        System.out.println("Printing List Data: \n" + invoicesA);
+       for(InvoiceExcelAttivo p : invoicesA){
             System.out.println(p);
             try {
                 Aiuto.testInsertAttivo(p.Azienda,p.Data,p.Numero,p.Importo,p.fattElettronica,p.bollo,p.scadenza,p.incasso,p.pagato,p.banca,p.totale,p.dPagamento,p.note,p.controllo);
+            } catch (SQLException throwables) {
+                System.out.println("errore");
+                throwables.printStackTrace();
+            }
+        }
+
+        List<InvoiceExcelPassivo> invoicesP = Poiji.fromExcel(file, InvoiceExcelPassivo.class, options);
+        System.out.println("Printing List Data: \n" + invoicesP);
+        for(InvoiceExcelPassivo p : invoicesP){
+            System.out.println(p);
+            try {
+                Aiuto.testInsertPassivo(p.Azienda,p.Data,p.Numero,p.fattElettronica,p.Importo,p.valuta,p.incasso,p.pagato,p.banca,p.totale,p.note,p.controllo,p.anomalie);
             } catch (SQLException throwables) {
                 System.out.println("errore");
                 throwables.printStackTrace();

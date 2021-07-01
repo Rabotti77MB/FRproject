@@ -1,61 +1,58 @@
 package FR.Excel;
 
 import com.poiji.annotation.ExcelCell;
-import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelRow;
 import com.poiji.annotation.ExcelSheet;
-import com.poiji.option.PoijiOptions;
 
 import java.util.Date;
 
 @ExcelSheet("Attivo")
-public class InvoiceExcel {
-
+public class InvoiceExcelAttivo {
 
     @ExcelRow
-    private int rowIndex;
+    public int rowIndex;
 
     @ExcelCell(0)
-    public   String Azienda;
+    public String Azienda;
 
     @ExcelCell(1)
-    public  String Data;
+    public String Data;
 
     @ExcelCell(2)
-    public  int Numero;
+    public Integer Numero;
 
     @ExcelCell(3)
-    public  Double Importo;
+    public Double Importo;
 
     @ExcelCell(4)
-    public  String fattElettronica;
+    public String fattElettronica;
 
     @ExcelCell(5)
-    public  String bollo;
+    public String bollo;
 
     @ExcelCell(6)
-    public  String scadenza;
+    public String scadenza;
 
     @ExcelCell(7)
-    public  String incasso;
+    public String incasso;
 
     @ExcelCell(8)
-    public  String pagato;
+    public String pagato;
 
     @ExcelCell(9)
-    public  String banca;
+    public String banca;
 
     @ExcelCell(10)
-    public  Double totale;
+    public Double totale;
 
     @ExcelCell(11)
-    public  String dPagamento;
+    public String dPagamento;
 
     @ExcelCell(12)
-    public  Double controllo;
+    public Double controllo;
 
     @ExcelCell(13)
-    public  String note;
+    public String note;
 
     @Override
     public String toString() {
