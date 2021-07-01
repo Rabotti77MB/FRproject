@@ -22,13 +22,16 @@ public class Look extends JFrame implements ActionListener {
     private final JTextField Data;
     private final JTextField numero;
     private final JTextField metodo_p;
-    private final JButton ordina;
+    private final JButton selezionaTutto;
     private final JPanel p2;
     private final JPanel Risult;
     private final JPanel Comandi;
     private final JPanel Campi;
     private final JPanel Group;
-
+    private final JButton ordinaForn;
+    private final JButton ordinaPrezz;
+    private final JButton ordinaData;
+    private final JLabel informazione;
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == Select) {
@@ -111,7 +114,67 @@ public class Look extends JFrame implements ActionListener {
             p2.repaint();
             setVisible(true);
         }
-        if (e.getSource() == ordina) {
+        if (e.getSource() == selezionaTutto) {
+            try {
+                JPanel Attivo1 = new JPanel();
+                JPanel Passivo1 = new JPanel();
+                JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM passivo"));
+                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo "));
+                Attivo1.add(ordinatiA);
+                Passivo1.add(ordinatiP);
+                TitledBorder titleBorder1 = new TitledBorder("Passivo");
+                Passivo1.setBorder(titleBorder1);
+                TitledBorder titleBorder = new TitledBorder("Attivo");
+                Attivo1.setBorder(titleBorder);
+                Risult.add(Attivo1, BorderLayout.WEST);
+                Risult.add(Passivo1, BorderLayout.EAST);
+                Risult.revalidate();
+                Risult.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
+        }
+        if (e.getSource() == ordinaForn) {
+            try {
+                JPanel Attivo1 = new JPanel();
+                JPanel Passivo1 = new JPanel();
+                JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM passivo order by Azienda"));
+                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo order by Azienda"));
+                Attivo1.add(ordinatiA);
+                Passivo1.add(ordinatiP);
+                TitledBorder titleBorder1 = new TitledBorder("Passivo");
+                Passivo1.setBorder(titleBorder1);
+                TitledBorder titleBorder = new TitledBorder("Attivo");
+                Attivo1.setBorder(titleBorder);
+                Risult.add(Attivo1, BorderLayout.WEST);
+                Risult.add(Passivo1, BorderLayout.EAST);
+                Risult.revalidate();
+                Risult.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
+        }
+        if (e.getSource() == ordinaPrezz) {
+            try {
+                JPanel Attivo1 = new JPanel();
+                JPanel Passivo1 = new JPanel();
+                JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM passivo order by Importo"));
+                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo order by Importo"));
+                Attivo1.add(ordinatiA);
+                Passivo1.add(ordinatiP);
+                TitledBorder titleBorder1 = new TitledBorder("Passivo");
+                Passivo1.setBorder(titleBorder1);
+                TitledBorder titleBorder = new TitledBorder("Attivo");
+                Attivo1.setBorder(titleBorder);
+                Risult.add(Attivo1, BorderLayout.WEST);
+                Risult.add(Passivo1, BorderLayout.EAST);
+                Risult.revalidate();
+                Risult.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
+        }
+        if (e.getSource() == ordinaData) {
             try {
                 JPanel Attivo1 = new JPanel();
                 JPanel Passivo1 = new JPanel();
@@ -130,7 +193,6 @@ public class Look extends JFrame implements ActionListener {
             } catch (SQLException e2) {
                 JOptionPane.showMessageDialog(this, "Database Error!");
             }
-
         }
     }
 
@@ -176,19 +238,30 @@ public class Look extends JFrame implements ActionListener {
     }
 
     public Look() {
+        ordinaData= new JButton("Ordina per Data");
+        ordinaData.addActionListener(this);
+        informazione=new JLabel("PER UTILIZZARE IL TASTO SELEZIONA SCRIVERE NELLA CASELLA DESIDERATA E CANCELLARE IL CONTENUTO DEGLI ALTRI CAMPI. OPPURE RIEMPIRLI TUTTI E 4");
         Group = new JPanel(new BorderLayout());
         Comandi = new JPanel(new GridLayout(1, 3));
         Campi = new JPanel(new GridLayout(1, 5));
         Risult = new JPanel(new BorderLayout());
         Select = new JButton("Seleziona");
+        ordinaForn= new JButton("Ordina per Azienda");
+        ordinaForn.addActionListener(this);
         Select.addActionListener(this);
         Pulisci = new JButton("Pulisci");
         Pulisci.addActionListener(this);
         fornitore = new JTextField("fornitore");
         p2 = new JPanel();
-        ordina = new JButton("Ordina");
-        ordina.addActionListener(this);
-        Comandi.add(ordina, BorderLayout.SOUTH);
+        ordinaPrezz=new JButton("Ordina per Importo");
+        ordinaPrezz.addActionListener(this);
+
+        selezionaTutto = new JButton("Seleziona tutto");
+        selezionaTutto.addActionListener(this);
+        Comandi.add(ordinaPrezz, BorderLayout.SOUTH);
+        Comandi.add(ordinaData, BorderLayout.SOUTH);
+        Comandi.add(selezionaTutto, BorderLayout.SOUTH);
+        Comandi.add(ordinaForn, BorderLayout.SOUTH);
         Comandi.add(Select, BorderLayout.SOUTH);
         Comandi.add(Pulisci, BorderLayout.SOUTH);
         Campi.add(fornitore, BorderLayout.NORTH);
@@ -206,7 +279,7 @@ public class Look extends JFrame implements ActionListener {
         Group.setBorder(comandi);
         p2.add(Group, BorderLayout.PAGE_END);
         p2.add(Risult, BorderLayout.NORTH);
-
+        p2.add(informazione, BorderLayout.PAGE_END);
         setContentPane(p2);
         pack();
         setSize(1200, 739);
