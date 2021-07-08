@@ -5,7 +5,12 @@ import com.poiji.bind.Poiji;
 import com.poiji.option.PoijiOptions;
 
 import java.io.File;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ExcelDataToJavaListTest  {
@@ -38,8 +43,8 @@ BasicOperations Aiuto;
        for(InvoiceExcelAttivo p : invoicesA){
             //System.out.println(p);
             try {
-
                 Aiuto.testInsertAttivo(p.Azienda,p.Data,p.Numero,p.Importo,p.fattElettronica,p.bollo,p.scadenza,p.incasso,p.pagato,p.banca,p.totale,p.dPagamento,p.note,p.controllo);
+
             } catch (SQLException throwables) {
                 System.out.println("errore");
                 throwables.printStackTrace();

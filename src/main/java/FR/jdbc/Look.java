@@ -31,7 +31,12 @@ public class Look extends JFrame implements ActionListener {
     private final JButton ordinaForn;
     private final JButton ordinaPrezz;
     private final JButton ordinaData;
+    private final JButton ordinaNum;
     private final JLabel informazione;
+    private final JButton ordinaIncass;
+    private final JButton ordinaBanca;
+    private final JPanel Comandi1;
+    private final JPanel Comandi2;
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == Select) {
@@ -109,7 +114,7 @@ public class Look extends JFrame implements ActionListener {
         if (e.getSource() == Pulisci) {
             Risult.removeAll();
             pack();
-            setSize(1200, 739);
+            setSize(1500, 739);
             p2.revalidate();
             p2.repaint();
             setVisible(true);
@@ -194,6 +199,66 @@ public class Look extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Database Error!");
             }
         }
+        if (e.getSource() == ordinaNum) {
+            try {
+                JPanel Attivo1 = new JPanel();
+                JPanel Passivo1 = new JPanel();
+                JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM passivo order by Numero"));
+                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo order by Numero"));
+                Attivo1.add(ordinatiA);
+                Passivo1.add(ordinatiP);
+                TitledBorder titleBorder1 = new TitledBorder("Passivo");
+                Passivo1.setBorder(titleBorder1);
+                TitledBorder titleBorder = new TitledBorder("Attivo");
+                Attivo1.setBorder(titleBorder);
+                Risult.add(Attivo1, BorderLayout.WEST);
+                Risult.add(Passivo1, BorderLayout.EAST);
+                Risult.revalidate();
+                Risult.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
+        }
+        if (e.getSource() == ordinaIncass) {
+            try {
+                JPanel Attivo1 = new JPanel();
+                JPanel Passivo1 = new JPanel();
+                JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM passivo order by Incasso"));
+                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo order by Incasso"));
+                Attivo1.add(ordinatiA);
+                Passivo1.add(ordinatiP);
+                TitledBorder titleBorder1 = new TitledBorder("Passivo");
+                Passivo1.setBorder(titleBorder1);
+                TitledBorder titleBorder = new TitledBorder("Attivo");
+                Attivo1.setBorder(titleBorder);
+                Risult.add(Attivo1, BorderLayout.WEST);
+                Risult.add(Passivo1, BorderLayout.EAST);
+                Risult.revalidate();
+                Risult.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
+        }
+        if (e.getSource() == ordinaBanca) {
+            try {
+                JPanel Attivo1 = new JPanel();
+                JPanel Passivo1 = new JPanel();
+                JScrollPane ordinatiP = new JScrollPane(getTableSelect("SELECT * FROM passivo order by Banca"));
+                JScrollPane ordinatiA = new JScrollPane(getTableSelect("SELECT * FROM attivo order by Banca"));
+                Attivo1.add(ordinatiA);
+                Passivo1.add(ordinatiP);
+                TitledBorder titleBorder1 = new TitledBorder("Passivo");
+                Passivo1.setBorder(titleBorder1);
+                TitledBorder titleBorder = new TitledBorder("Attivo");
+                Attivo1.setBorder(titleBorder);
+                Risult.add(Attivo1, BorderLayout.WEST);
+                Risult.add(Passivo1, BorderLayout.EAST);
+                Risult.revalidate();
+                Risult.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
+        }
     }
 
     public JTable getTableSelect(String query) throws SQLException {
@@ -238,12 +303,20 @@ public class Look extends JFrame implements ActionListener {
     }
 
     public Look() {
+        Comandi1 = new JPanel(new GridLayout(1,5));
+        Comandi2= new JPanel(new GridLayout(1,4));
+        ordinaBanca=new JButton("Ordina per Banca");
+        ordinaBanca.addActionListener(this);
+        ordinaIncass=new JButton("Ordina per Pagamento");
+        ordinaIncass.addActionListener(this);
+        ordinaNum= new JButton("Ordina per Numero ");
+        ordinaNum.addActionListener(this);
         ordinaData= new JButton("Ordina per Data");
         ordinaData.addActionListener(this);
         informazione=new JLabel("PER UTILIZZARE IL TASTO SELEZIONA SCRIVERE NELLA CASELLA DESIDERATA E CANCELLARE IL CONTENUTO DEGLI ALTRI CAMPI. OPPURE RIEMPIRLI TUTTI E 4");
         Group = new JPanel(new BorderLayout());
-        Comandi = new JPanel(new GridLayout(1, 3));
-        Campi = new JPanel(new GridLayout(1, 5));
+        Comandi = new JPanel();
+        Campi = new JPanel(new GridLayout(1, 4));
         Risult = new JPanel(new BorderLayout());
         Select = new JButton("Seleziona");
         ordinaForn= new JButton("Ordina per Azienda");
@@ -258,14 +331,18 @@ public class Look extends JFrame implements ActionListener {
 
         selezionaTutto = new JButton("Seleziona tutto");
         selezionaTutto.addActionListener(this);
-        Comandi.add(ordinaPrezz, BorderLayout.SOUTH);
-        Comandi.add(ordinaData, BorderLayout.SOUTH);
-        Comandi.add(selezionaTutto, BorderLayout.SOUTH);
-        Comandi.add(ordinaForn, BorderLayout.SOUTH);
-        Comandi.add(Select, BorderLayout.SOUTH);
-        Comandi.add(Pulisci, BorderLayout.SOUTH);
+        Comandi1.add(ordinaBanca,BorderLayout.SOUTH);
+        Comandi1.add(ordinaPrezz, BorderLayout.SOUTH);
+        Comandi1.add(ordinaData, BorderLayout.SOUTH);
+        Comandi1.add(ordinaIncass,BorderLayout.SOUTH);
+        Comandi1.add(selezionaTutto, BorderLayout.SOUTH);
+        Comandi2.add(ordinaForn, BorderLayout.SOUTH);
+        Comandi2.add(Select, BorderLayout.SOUTH);
+        Comandi2.add(Pulisci, BorderLayout.SOUTH);
+        Comandi2.add(ordinaNum,BorderLayout.SOUTH);
         Campi.add(fornitore, BorderLayout.NORTH);
-
+        Comandi.add(Comandi1,BorderLayout.NORTH);
+        Comandi.add(Comandi2,BorderLayout.SOUTH);
         Data = new JTextField("Data");
         metodo_p = new JTextField("Pagamento");
         numero = new JTextField("Numero");
@@ -282,7 +359,7 @@ public class Look extends JFrame implements ActionListener {
         p2.add(informazione, BorderLayout.PAGE_END);
         setContentPane(p2);
         pack();
-        setSize(1200, 739);
+        setSize(1500, 739);
         setVisible(true);
     }
 }
