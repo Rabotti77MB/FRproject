@@ -3,7 +3,7 @@ package FR.Aestethics;
 import javax.swing.*;
 import java.awt.*;
 
-class ImageImplement extends JPanel {
+public class ImageImplement extends JPanel {
     private Image img;
 
     public ImageImplement(Image img) {

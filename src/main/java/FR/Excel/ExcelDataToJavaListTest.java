@@ -32,6 +32,7 @@ BasicOperations Aiuto;
         // just DEBUG!
 
         System.out.println("Printing List Data: \n" + invoicesA);
+
         try {
             Aiuto.SvuotAttivo();
             Aiuto.SvuotaPassivo();
@@ -41,7 +42,7 @@ BasicOperations Aiuto;
         }
 
        for(InvoiceExcelAttivo p : invoicesA){
-            //System.out.println(p);
+            System.out.println(p);
             try {
                 Aiuto.testInsertAttivo(p.Azienda,p.Data,p.Numero,p.Importo,p.fattElettronica,p.bollo,p.scadenza,p.incasso,p.pagato,p.banca,p.totale,p.dPagamento,p.note,p.controllo);
 
@@ -54,9 +55,8 @@ BasicOperations Aiuto;
         List<InvoiceExcelPassivo> invoicesP = Poiji.fromExcel(file, InvoiceExcelPassivo.class, options);
         System.out.println("Printing List Data: \n" + invoicesP);
         for(InvoiceExcelPassivo p : invoicesP){
-            //System.out.println(p);
+            System.out.println(p);
             try {
-
                 Aiuto.testInsertPassivo(p.Azienda,p.Data,p.Numero,p.fattElettronica,p.Importo,p.valuta,p.incasso,p.pagato,p.banca,p.totale,p.note,p.controllo,p.anomalie);
             } catch (SQLException throwables) {
                 System.out.println("errore");

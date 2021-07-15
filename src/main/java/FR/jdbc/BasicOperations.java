@@ -143,15 +143,16 @@ public class BasicOperations {
             printRow(rs);
         }
     }
+
     public void SvuotAttivo() throws SQLException{
         statement.executeUpdate("delete from attivo");
     }
     public void SvuotaPassivo()throws SQLException{
         statement.executeUpdate("delete from passivo");
     }
-    public void testInsertPassivo(String Azienda, String DATE, String Num, String Fattura_El, double importo, String Valuta,String Incasso,String Pagato,String Banca,double Totale,String Note, double Controllo, String Anomalie) throws SQLException {
-        //System.out.print("sto eseguendo: insert into passivo  values (\""+Azienda+"\",\""+DATE+"\",\""+Num+"\",\""+Fattura_El+"\","+importo+",\""+Valuta+"\",\""+Incasso+"\",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Note+"\","+Controllo+",\""+Anomalie+"\"); ");
 
+    public void testInsertPassivo(String Azienda, String DATE, String Num, String Fattura_El, double importo, String Valuta,String Incasso,String Pagato,String Banca,double Totale,String Note, double Controllo, String Anomalie) throws SQLException {
+        System.out.print("sto eseguendo: insert into passivo  values (\""+Azienda+"\",\""+DATE+"\",\""+Num+"\",\""+Fattura_El+"\","+importo+",\""+Valuta+"\",\""+Incasso+"\",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Note+"\","+Controllo+",\""+Anomalie+"\"); ");
         statement.executeUpdate("insert into passivo  values (\""+Azienda+"\",\""+DATE+"\",\""+Num+"\",\""+Fattura_El+"\","+importo+",\""+Valuta+"\",\""+Incasso+"\",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Note+"\","+Controllo+",\""+Anomalie+"\"); ");
 
     }

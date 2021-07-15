@@ -1,6 +1,7 @@
 package FR.Aestethics;
 
 import FR.Excel.ExcelDataToJavaListTest;
+import FR.Magazzino.Warehouse;
 import FR.jdbc.DBManager;
 import FR.jdbc.Look;
 import FR.utils.Utils;
@@ -132,7 +133,14 @@ public class MainWindow extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == Magazzino) {
-            System.out.println("Guardiamo il magazzino");
+            // System.out.println("Guardiamo il magazzino");
+            DBManager.setConnection(Utils.JDBC_Driver_MySQL,Utils.JDBC_URL_MySQL);
+            try {
+                Statement statement = DBManager.getConnection().createStatement();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            SwingUtilities.invokeLater(Warehouse::new);
         }
         if (e.getSource() == Corrieri) {
             System.out.println("Best Corriere");
