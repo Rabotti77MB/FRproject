@@ -1,15 +1,24 @@
 package FR.Magazzino;
 
 import FR.Aestethics.ImageImplement;
+import FR.jdbc.DBManager;
+import FR.utils.Utils;
+import org.apache.xpath.operations.Lt;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Warehouse2D extends JFrame implements ActionListener {
     JFrame f;
-    JPanel p;
+    JPanel Ltati,Base;
     JMenuBar menu;
     JMenu Visualizza;
     JMenu A, B, C, D, E;
@@ -22,6 +31,7 @@ public class Warehouse2D extends JFrame implements ActionListener {
     JMenu Operations = new JMenu("Operazioni");
     JMenuItem Insert = new JMenuItem("Inserisci");
     JMenuItem Delete = new JMenuItem("Rimuovi");
+    JMenuItem Pulisco = new JMenuItem("Pulisco");
 
     private final int height = 100;
     private final int length = 150;
@@ -32,64 +42,278 @@ public class Warehouse2D extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == A1) {
 
+        if (e.getSource() == A1) {
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='A1'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == A2) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='A2'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == A3) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='A3'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
-        if (e.getSource() == B1) {
-
+        if (e.getSource() == B1){
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='B1'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == B2) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='B2'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == B3) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='B3'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == C1) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='C1'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == C2) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='C2'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == C3) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='C3'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == C4) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='C4'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == D1) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='D1'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == D2) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='D2'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == D3) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='D3'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == D4) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='D4'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == E1) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='E1'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == E2) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='E2'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == E3) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='E3'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == E4) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='E4'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
         if (e.getSource() == E5) {
-
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi where Scomparto='E5'"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
         }
-
+        if(e.getSource()==Pulisco){
+            Base.removeAll();
+            Base.repaint();
+            Base.revalidate();
+        }
         /** --------------------------------------------------*/
         /** --------------------------------------------------*/
         /** --------------------------------------------------*/
@@ -102,13 +326,48 @@ public class Warehouse2D extends JFrame implements ActionListener {
             SwingUtilities.invokeLater(DeleteView::new);
         }
     }
+    public JTable getTableSelect(String query) throws SQLException {
+        JTable t = new JTable();
+        DefaultTableModel dm = new DefaultTableModel();
 
+        ResultSet rs = DBManager.getConnection().createStatement().executeQuery(query);
+        ResultSetMetaData rsMetaData = rs.getMetaData();
+
+        // get columns metadata
+        int cols = rsMetaData.getColumnCount();
+        String[] c = new String[cols];
+        for (int i = 0; i < cols; i++) {
+            c[i] = rsMetaData.getColumnName(i + 1);
+            dm.addColumn(c[i]);
+        }
+
+        // Get rows
+        Object[] row = new Object[cols];
+        while (rs.next()) {
+            for (int i = 0; i < cols; i++) {
+                row[i] = rs.getString(i + 1);
+            }
+            dm.addRow(row);
+        }
+
+
+        t.setModel(dm);
+
+        t.setGridColor(Color.black);
+        t.setRowHeight(30);
+        t.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        return t;
+    }
     public Warehouse2D() {
         f = new JFrame();
         f.setTitle("Gestione Magazzino");
+        Base= new JPanel();
+        Base.setBackground(Color.GREEN);
+        //Base.setSize(200,200);
+        f.add(Base,BorderLayout.SOUTH);
 
-        p = new JPanel();
-        label.setIcon(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Magazzino\\pianta2Dprova.jpg"));
+        label.setIcon(new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Magazzino\\pianta2Dprova.jpg"));
         f.add(label);
         f.pack();
 
@@ -182,13 +441,14 @@ public class Warehouse2D extends JFrame implements ActionListener {
         E.add(E4);
         E.add(E5);
 
+        Pulisco.addActionListener(this);
+        Visualizza.add(Pulisco);
         Visualizza.add(A);
         Visualizza.add(B);
         Visualizza.add(C);
         Visualizza.add(D);
         Visualizza.add(E);
         menu.add(Visualizza);
-
         Operations.add(Insert);
         Insert.addActionListener(this);
         Operations.add(Delete);
@@ -196,6 +456,7 @@ public class Warehouse2D extends JFrame implements ActionListener {
         menu.add(Operations);
         menu.setVisible(true);
         // menu.add(Box.createRigidArea(new Dimension(100,25)));
+
         f.setJMenuBar(menu);
         f.getContentPane();
         f.setVisible(true);
@@ -203,9 +464,14 @@ public class Warehouse2D extends JFrame implements ActionListener {
         f.setSize(1500, 850);
         f.setBackground(Color.GRAY);
         f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException{
+
+        DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
+        Statement statement = DBManager.getConnection().createStatement();
+
         SwingUtilities.invokeLater(Warehouse2D::new);
     }
 

@@ -108,7 +108,7 @@ public class Warehouse3D extends JFrame implements ActionListener {
         f.setTitle("Gestione Magazzino");
 
         p = new JPanel();
-        label.setIcon(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Magazzino\\3D_esportazione.jpg"));
+        label.setIcon(new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Magazzino\\3D_esportazione.jpg"));
         f.add(label);
         f.pack();
 
