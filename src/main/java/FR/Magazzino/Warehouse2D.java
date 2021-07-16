@@ -96,10 +96,10 @@ public class Warehouse2D extends JFrame implements ActionListener {
         /** --------------------------------------------------*/
 
         if(e.getSource()==Insert){
-
+            SwingUtilities.invokeLater(InsertView::new);
         }
         if(e.getSource()==Delete){
-
+            SwingUtilities.invokeLater(DeleteView::new);
         }
     }
 
