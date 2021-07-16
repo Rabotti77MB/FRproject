@@ -1,7 +1,7 @@
 package FR.Aestethics;
 
 import FR.Excel.ExcelDataToJavaListTest;
-import FR.Magazzino.Warehouse;
+import FR.Magazzino.Chooser2D3D;
 import FR.jdbc.DBManager;
 import FR.jdbc.Look;
 import FR.utils.Utils;
@@ -13,7 +13,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.sql.Statement;
 
 public class MainWindow extends JFrame implements ActionListener {
@@ -140,7 +139,7 @@ public class MainWindow extends JFrame implements ActionListener {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            SwingUtilities.invokeLater(Warehouse::new);
+            SwingUtilities.invokeLater(Chooser2D3D::new);
         }
         if (e.getSource() == Corrieri) {
             System.out.println("Best Corriere");

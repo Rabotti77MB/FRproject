@@ -1,21 +1,17 @@
 package FR.Magazzino;
 
 import FR.Aestethics.ImageImplement;
-import FR.utils.Utils;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import javax.swing.plaf.basic.DefaultMenuLayout;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Warehouse extends JFrame implements ActionListener {
+public class Warehouse2D extends JFrame implements ActionListener {
     JFrame f;
     JPanel p;
     JMenuBar menu;
@@ -30,20 +26,21 @@ public class Warehouse extends JFrame implements ActionListener {
     private final int depth = 50;
     ImageIcon image;
     private ImageImplement panel;
-
+    JLabel label=new JLabel();
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
-    public Warehouse() {
+    public Warehouse2D() {
         f = new JFrame();
         f.setTitle("Gestione Magazzino");
-        // p = new JPanel();
-        // image=new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Magazzino\\Pianta.jpg");
-        // f.setIconImage(image.getImage());
-        panel = new ImageImplement(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Magazzino\\Pianta.jpg").getImage());
+
+        p = new JPanel();
+        label.setIcon(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Magazzino\\pianta2Dprova.jpg"));
+        f.add(label);
+        f.pack();
 
         menu = new JMenuBar();
 
@@ -88,7 +85,7 @@ public class Warehouse extends JFrame implements ActionListener {
         E2 = new JMenuItem();
         E3 = new JMenuItem();
         E4 = new JMenuItem();
-        E5=new JMenuItem();
+        E5 = new JMenuItem();
         E.add(E1);
         E.add(E2);
         E.add(E3);
@@ -100,12 +97,20 @@ public class Warehouse extends JFrame implements ActionListener {
         menu.add(C);
         menu.add(D);
         menu.add(E);
+        menu.setVisible(true);
+        menu.add(Box.createRigidArea(new Dimension(100,25)));
+        f.setJMenuBar(menu);
 
-        panel.add(menu);
-        f.add(panel);
         f.setVisible(true);
-        f.setSize(300, 300);
-        f.setBackground(Color.BLACK);
+        f.setResizable(false);
+        f.setSize(1500, 850);
+        f.setBackground(Color.GRAY);
         f.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(Warehouse2D::new);
+    }
+
+
 }
