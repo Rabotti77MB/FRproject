@@ -69,15 +69,10 @@ public class BasicOperations {
         } catch (SQLException a) {
             System.out.println("Something went wrong... " + a.getMessage());
         }*/
+
         try {
             System.out.println("\n- scrollable...");
-            testInsertAttivo("ultimaA1","2021-08-01",10,1000.1,"si","no","2021-10-20","Pagamento Contante Immediato","si","Cassa",12.0,"2021-01-04","note",0);
-        } catch (SQLException a) {
-            System.out.println("Something went wrong... " + a.getMessage());
-        }
-        try {
-            System.out.println("\n- scrollable...");
-            testInsertPassivo("ultimaP1","2021-08-01","2021/FE24","si",95.07,"2021-01-05","CARTA","si","UNICREDIT",95.07,"2021-01-05",0,"note");
+            TestInsertPacchi("a",1.0,1.0,1.0,95.0,"A1",2,"si");
         } catch (SQLException a) {
             System.out.println("Something went wrong... " + a.getMessage());
         }
@@ -161,7 +156,9 @@ public class BasicOperations {
 
         statement.executeUpdate(" insert into attivo  values (\""+Azienda+"\",\""+DATE+"\","+Num+","+importo+",\""+Fattura_El+"\",\""+Bollo+"\",\""+Scadenza+"\",\""+Incasso+"\",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Data_pagamento+"\","+Controllo+",\""+Note+"\");");
     }
-
+    public void TestInsertPacchi (String Azienda,Double Peso, Double Altezza,Double Larghezza, Double Profondita,String Scomparto,int Ripiano,String Prodotto) throws SQLException {
+        statement.executeUpdate("insert into pacchi values (\""+Azienda+"\","+Peso+","+Altezza+","+Larghezza+","+Profondita+",\""+Scomparto+"\","+Ripiano+",\""+Prodotto+"\");");
+    }
     public void testDelete(String nomecol, String val) throws SQLException {
         System.out.print("sto eseguendo: DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
         statement.executeUpdate(
