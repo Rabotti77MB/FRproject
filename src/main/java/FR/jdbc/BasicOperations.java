@@ -72,7 +72,7 @@ public class BasicOperations {
 
         try {
             System.out.println("\n- scrollable...");
-            TestInsertPacchi("a",1.0,1.0,1.0,95.0,"A1",2,"si");
+            testDeletePacco("a",1.0,1.0,1.0,95.0,"A1",2,"si");
         } catch (SQLException a) {
             System.out.println("Something went wrong... " + a.getMessage());
         }
@@ -159,10 +159,10 @@ public class BasicOperations {
     public void TestInsertPacchi (String Azienda,Double Peso, Double Altezza,Double Larghezza, Double Profondita,String Scomparto,int Ripiano,String Prodotto) throws SQLException {
         statement.executeUpdate("insert into pacchi values (\""+Azienda+"\","+Peso+","+Altezza+","+Larghezza+","+Profondita+",\""+Scomparto+"\","+Ripiano+",\""+Prodotto+"\");");
     }
-    public void testDelete(String nomecol, String val) throws SQLException {
-        System.out.print("sto eseguendo: DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
+    public void testDeletePacco(String Azienda,Double Peso, Double Altezza,Double Larghezza, Double Profondita,String Scomparto,int Ripiano,String Prodotto) throws SQLException {
+        //System.out.print("sto eseguendo: DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
         statement.executeUpdate(
-                "DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
+                "DELETE FROM pacchi WHERE Azienda ='" + Azienda + "' and Peso="+Peso+" and Altezza="+Altezza+" and Larghezza="+Larghezza+ " and Profondita = "+Profondita+" and Scomparto = '"+Scomparto+"' and Ripiano = "+Ripiano+" and Prodotto = '"+Prodotto+"';");
 
     }
 
