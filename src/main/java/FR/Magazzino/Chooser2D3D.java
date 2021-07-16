@@ -58,12 +58,10 @@ public class Chooser2D3D extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == c2D) {
-            im = new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Magazzino\\Pianta.jpg");
-            Selection2();
+            SwingUtilities.invokeLater(Warehouse2D::new);
         }
         if (e.getSource() == c3D) {
-            im = new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Magazzino\\Pianta3D.jpg");
-            Selection3();
+            SwingUtilities.invokeLater(Warehouse3D::new);
         }
     }
 
