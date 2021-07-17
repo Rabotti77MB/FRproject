@@ -163,7 +163,8 @@ public class BasicOperations {
         //System.out.print("sto eseguendo: DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
         statement.executeUpdate(
                 "DELETE FROM pacchi WHERE Azienda ='" + Azienda + "' and Peso="+Peso+" and Altezza="+Altezza+" and Larghezza="+Larghezza+ " and Profondita = "+Profondita+" and Scomparto = '"+Scomparto+"' and Ripiano = "+Ripiano+" and Prodotto = '"+Prodotto+"';");
-
+        System.out.println(
+                "DELETE FROM pacchi WHERE Azienda ='" + Azienda + "' and Peso="+Peso+" and Altezza="+Altezza+" and Larghezza="+Larghezza+ " and Profondita = "+Profondita+" and Scomparto = '"+Scomparto+"' and Ripiano = "+Ripiano+" and Prodotto = '"+Prodotto+"';");
     }
 
     /**
