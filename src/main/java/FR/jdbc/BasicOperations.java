@@ -77,49 +77,6 @@ public class BasicOperations {
             System.out.println("Something went wrong... " + a.getMessage());
         }
 
-        /*
-        try {
-            System.out.println("\n- updating database...");
-            testUpdate();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- reading database...");
-            testSelect();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- test scrollable...");
-            testScrollable();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- test updateable...");
-            testUpdateable();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- reading database...");
-            testSelect();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-
-        try {
-            System.out.println("\n- test sensitive...");
-            testSensitive();
-        } catch (SQLException e) {
-            System.out.println("Something went wrong... " + e.getMessage());
-        }
-        */
         try {
             System.out.println("\n- closing database...");
             DBManager.close();
@@ -163,7 +120,6 @@ public class BasicOperations {
         //System.out.print("sto eseguendo: DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
         statement.executeUpdate(
                 "DELETE FROM pacchi WHERE Azienda ='" + Azienda + "' and Peso="+Peso+" and Altezza="+Altezza+" and Larghezza="+Larghezza+ " and Profondita = "+Profondita+" and Scomparto = '"+Scomparto+"' and Ripiano = "+Ripiano+" and Prodotto = '"+Prodotto+"';");
-
     }
 
     /**
