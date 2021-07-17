@@ -12,11 +12,11 @@ public class Utils {
             Paths.get(Utils.ooprogrammingdir(), "ooprogramming.sqlite").toString());
 
     public static final String JDBC_Driver_MySQL = "com.mysql.cj.jdbc.Driver";
-    /* public static final String JDBC_URL_MySQL = "jdbc:mysql://localhost:3306/MBE?user=admin&password=Inter2010&serverTimezone=" +
-            TimeZone.getDefault().getID(); */
+     public static final String JDBC_URL_MySQL = "jdbc:mysql://localhost:3306/MBE?user=admin&password=Inter2010&serverTimezone=" +
+            TimeZone.getDefault().getID();
 
-    public static final String JDBC_URL_MySQL = "jdbc:mysql://localhost:3306/MBE?user=afolloni&password=tB2021/n&serverTimezone=" +
-    TimeZone.getDefault().getID();
+   /* public static final String JDBC_URL_MySQL = "jdbc:mysql://localhost:3306/MBE?user=afolloni&password=tB2021/n&serverTimezone=" +
+    TimeZone.getDefault().getID();*/
 
 
     public static String ooprogrammingdir() {
