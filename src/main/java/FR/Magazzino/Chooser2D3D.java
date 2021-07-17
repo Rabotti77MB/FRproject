@@ -44,7 +44,7 @@ public class Chooser2D3D extends JFrame implements ActionListener {
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setSize(300, 100);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void Selection2() {
