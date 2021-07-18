@@ -72,7 +72,7 @@ public class BasicOperations {
 
         try {
             System.out.println("\n- scrollable...");
-            testDeletePacco("a",1.0,1.0,1.0,95.0,"A1",2,"si");
+            testDeletePacco("a", 1.0, 1.0, 1.0, 95.0, "A1", 2, "si", 2);
         } catch (SQLException a) {
             System.out.println("Something went wrong... " + a.getMessage());
         }
@@ -139,32 +139,36 @@ public class BasicOperations {
         }
     }
 
-    public void SvuotAttivo() throws SQLException{
+    public void SvuotAttivo() throws SQLException {
         statement.executeUpdate("delete from attivo");
     }
-    public void SvuotaPassivo()throws SQLException{
+
+    public void SvuotaPassivo() throws SQLException {
         statement.executeUpdate("delete from passivo");
     }
 
-    public void testInsertPassivo(String Azienda, String DATE, String Num, String Fattura_El, double importo, String Valuta,String Incasso,String Pagato,String Banca,double Totale,String Note, double Controllo, String Anomalie) throws SQLException {
-        System.out.print("sto eseguendo: insert into passivo  values (\""+Azienda+"\",\""+DATE+"\",\""+Num+"\",\""+Fattura_El+"\","+importo+",\""+Valuta+"\",\""+Incasso+"\",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Note+"\","+Controllo+",\""+Anomalie+"\"); ");
-        statement.executeUpdate("insert into passivo  values (\""+Azienda+"\",\""+DATE+"\",\""+Num+"\",\""+Fattura_El+"\","+importo+",\""+Valuta+"\",\""+Incasso+"\",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Note+"\","+Controllo+",\""+Anomalie+"\"); ");
+    public void testInsertPassivo(String Azienda, String DATE, String Num, String Fattura_El, double importo, String Valuta, String Incasso, String Pagato, String Banca, double Totale, String Note, double Controllo, String Anomalie) throws SQLException {
+        System.out.print("sto eseguendo: insert into passivo  values (\"" + Azienda + "\",\"" + DATE + "\",\"" + Num + "\",\"" + Fattura_El + "\"," + importo + ",\"" + Valuta + "\",\"" + Incasso + "\",\"" + Pagato + "\",\"" + Banca + "\"," + Totale + ",\"" + Note + "\"," + Controllo + ",\"" + Anomalie + "\"); ");
+        statement.executeUpdate("insert into passivo  values (\"" + Azienda + "\",\"" + DATE + "\",\"" + Num + "\",\"" + Fattura_El + "\"," + importo + ",\"" + Valuta + "\",\"" + Incasso + "\",\"" + Pagato + "\",\"" + Banca + "\"," + Totale + ",\"" + Note + "\"," + Controllo + ",\"" + Anomalie + "\"); ");
 
     }
-    public void testInsertAttivo(String Azienda, String DATE, int Num, double importo, String Fattura_El,  String Bollo,String Scadenza,String Incasso,String Pagato,String Banca,double Totale, String Data_pagamento, String Note, double Controllo) throws SQLException {
+
+    public void testInsertAttivo(String Azienda, String DATE, int Num, double importo, String Fattura_El, String Bollo, String Scadenza, String Incasso, String Pagato, String Banca, double Totale, String Data_pagamento, String Note, double Controllo) throws SQLException {
         //System.out.print("sto eseguendo: insert into attivo  values (\""+Azienda+"\",\""+DATE+"\","+Num+","+importo+",\""+Fattura_El+"\",\""+Bollo+"\",\""+Scadenza+"\",\""+Incasso+"\",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Data_pagamento+"\","+Controllo+",\" "+Note+"\");");
 
-        statement.executeUpdate(" insert into attivo  values (\""+Azienda+"\",\""+DATE+"\","+Num+","+importo+",\""+Fattura_El+"\",\""+Bollo+"\",\""+Scadenza+"\",\""+Incasso+"\",\""+Pagato+"\",\""+Banca+"\","+Totale+",\""+Data_pagamento+"\","+Controllo+",\""+Note+"\");");
+        statement.executeUpdate(" insert into attivo  values (\"" + Azienda + "\",\"" + DATE + "\"," + Num + "," + importo + ",\"" + Fattura_El + "\",\"" + Bollo + "\",\"" + Scadenza + "\",\"" + Incasso + "\",\"" + Pagato + "\",\"" + Banca + "\"," + Totale + ",\"" + Data_pagamento + "\"," + Controllo + ",\"" + Note + "\");");
     }
-    public void TestInsertPacchi (String Azienda,Double Peso, Double Altezza,Double Larghezza, Double Profondita,String Scomparto,int Ripiano,String Prodotto) throws SQLException {
-        statement.executeUpdate("insert into pacchi values (\""+Azienda+"\","+Peso+","+Altezza+","+Larghezza+","+Profondita+",\""+Scomparto+"\","+Ripiano+",\""+Prodotto+"\");");
+
+    public void TestInsertPacchi(String Azienda, Double Peso, Double Altezza, Double Larghezza, Double Profondita, String Scomparto, int Ripiano, String Prodotto, int Quantita) throws SQLException {
+        statement.executeUpdate("insert into pacchi values (\"" + Azienda + "\"," + Peso + "," + Altezza + "," + Larghezza + "," + Profondita + ",\"" + Scomparto + "\"," + Ripiano + ",\"" + Prodotto + "\"," + Quantita + ");");
     }
-    public void testDeletePacco(String Azienda,Double Peso, Double Altezza,Double Larghezza, Double Profondita,String Scomparto,int Ripiano,String Prodotto) throws SQLException {
+
+    public void testDeletePacco(String Azienda, Double Peso, Double Altezza, Double Larghezza, Double Profondita, String Scomparto, int Ripiano, String Prodotto, int Quantita) throws SQLException {
         //System.out.print("sto eseguendo: DELETE FROM persona WHERE " + nomecol + "='" + val + "'; ");
         statement.executeUpdate(
-                "DELETE FROM pacchi WHERE Azienda ='" + Azienda + "' and Peso="+Peso+" and Altezza="+Altezza+" and Larghezza="+Larghezza+ " and Profondita = "+Profondita+" and Scomparto = '"+Scomparto+"' and Ripiano = "+Ripiano+" and Prodotto = '"+Prodotto+"';");
+                "DELETE FROM pacchi WHERE Azienda ='" + Azienda + "' and Peso=" + Peso + " and Altezza=" + Altezza + " and Larghezza=" + Larghezza + " and Profondita = " + Profondita + " and Scomparto = '" + Scomparto + "' and Ripiano = " + Ripiano + " and Prodotto = '" + Prodotto + "' and Quantita = " + Quantita + ";");
         System.out.println(
-                "DELETE FROM pacchi WHERE Azienda ='" + Azienda + "' and Peso="+Peso+" and Altezza="+Altezza+" and Larghezza="+Larghezza+ " and Profondita = "+Profondita+" and Scomparto = '"+Scomparto+"' and Ripiano = "+Ripiano+" and Prodotto = '"+Prodotto+"';");
+                "DELETE FROM pacchi WHERE Azienda ='" + Azienda + "' and Peso=" + Peso + " and Altezza=" + Altezza + " and Larghezza=" + Larghezza + " and Profondita = " + Profondita + " and Scomparto = '" + Scomparto + "' and Ripiano = " + Ripiano + " and Prodotto = '" + Prodotto + " and Quantita = " + Quantita + ";");
     }
 
     /**
@@ -229,12 +233,12 @@ public class BasicOperations {
      * Prints the current ResultSet row
      */
     public void printRow(ResultSet rs) throws SQLException {
-        System.out.println( rs.getString("Azienda") + rs.getString("Data") +
-                rs.getString("Numero")+     rs.getString("Fattura_Elettronica")+ rs.getString("Importo")+
-                rs.getString("Valuta")+ rs.getString("Incasso")+
-                rs.getString("Pagato")+ rs.getString("Banca")+
-                rs.getString("Totale")+ rs.getString("Note")+
-                rs.getString("Controllo")+ rs.getString("Anomalie_note") );
+        System.out.println(rs.getString("Azienda") + rs.getString("Data") +
+                rs.getString("Numero") + rs.getString("Fattura_Elettronica") + rs.getString("Importo") +
+                rs.getString("Valuta") + rs.getString("Incasso") +
+                rs.getString("Pagato") + rs.getString("Banca") +
+                rs.getString("Totale") + rs.getString("Note") +
+                rs.getString("Controllo") + rs.getString("Anomalie_note"));
 
     }
 

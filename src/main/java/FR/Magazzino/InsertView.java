@@ -3,7 +3,6 @@ package FR.Magazzino;
 import FR.jdbc.BasicOperations;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -28,10 +27,13 @@ public class InsertView extends JFrame implements ActionListener {
     JTextField Ripiano = new JTextField("Ripiano");
     JTextField Prodotto = new JTextField("Prodotto");
     JTextField Peso = new JTextField("Peso");
+    JTextField Quantita = new JTextField("Quantita'");
     JButton Conferma = new JButton("Conferma");
     JPanel panel = new JPanel();
+    JLabel Info;
 
     public InsertView() {
+        Info=new JLabel("Per le misure utilizzare i centimetri e la notazione . per indicare i numeri decimali");
         panel.add(Azienda);
         panel.add(Peso);
         panel.add(Altezza);
@@ -41,7 +43,9 @@ public class InsertView extends JFrame implements ActionListener {
         panel.add(Ripiano);
         panel.add(Prodotto);
         Conferma.addActionListener(this);
+        panel.add(Quantita);
         panel.add(Conferma);
+        panel.add(Info);
         frame.add(panel);
 
         frame.getContentPane();
@@ -72,14 +76,20 @@ public class InsertView extends JFrame implements ActionListener {
             int check_profondita = I_profondita.compareTo("");
             double altezza = 0, larghezza = 0, profondita = 0, peso = 0;
             int ripiano = 0;
+            int quantita = 0;
 
             String I_scomparto = Scomparto.getText();
             int check_scomparto = I_scomparto.compareTo("");
 
             String I_ripiano = Ripiano.getText();
             int check_ripiano = I_ripiano.compareTo("");
+
             String I_prodotto = Prodotto.getText();
             int check_prodotto = I_prodotto.compareTo("");
+
+            String I_quantita = Quantita.getText();
+            int check_quantita = I_quantita.compareTo("");
+
             System.out.println(check_Altezza);
             System.out.println(check_prodotto);
             System.out.println(check_Azienda);
@@ -88,13 +98,15 @@ public class InsertView extends JFrame implements ActionListener {
             System.out.println(check_profondita);
             System.out.println(check_ripiano);
             System.out.println(check_scomparto);
-            if (check_peso != 0 && check_Altezza != 0 && check_Larghezza != 0 && check_profondita != 0 && check_ripiano != 0 && check_Azienda != 0 && check_prodotto != 0 && check_ripiano != 0 && check_scomparto != 0) {
+            System.out.println(check_quantita);
+            if (check_peso != 0 && check_Altezza != 0 && check_Larghezza != 0 && check_profondita != 0 && check_ripiano != 0 && check_Azienda != 0 && check_prodotto != 0 && check_ripiano != 0 && check_scomparto != 0 && check_quantita != 0) {
                 System.out.println("dentro");
                 altezza = Double.parseDouble(Altezza.getText());
                 profondita = Double.parseDouble(Profondita.getText());
                 larghezza = Double.parseDouble(Larghezza.getText());
                 peso = Double.parseDouble(Peso.getText());
                 ripiano = Integer.parseInt(Ripiano.getText());
+                quantita = Integer.parseInt(Quantita.getText());
                     /*System.out.println(I_Azienda);
                     System.out.println(peso);
                     System.out.println(altezza);
@@ -103,7 +115,7 @@ public class InsertView extends JFrame implements ActionListener {
                     System.out.println(I_scomparto);
                     System.out.println(I_prodotto);*/
                 try {
-                    Aiuto.TestInsertPacchi(I_Azienda, peso, altezza, larghezza, profondita, I_scomparto, ripiano, I_prodotto);
+                    Aiuto.TestInsertPacchi(I_Azienda, peso, altezza, larghezza, profondita, I_scomparto, ripiano, I_prodotto,quantita);
                     JOptionPane.showMessageDialog(this, "INSERIMENTO CORRETTO!");
                 } catch (SQLException throwables) {
                     System.out.println("errore");

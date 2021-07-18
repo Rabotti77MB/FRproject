@@ -357,6 +357,7 @@ public class Look extends JFrame implements ActionListener {
         p2.add(Group, BorderLayout.PAGE_END);
         p2.add(Risult, BorderLayout.NORTH);
         p2.add(informazione, BorderLayout.PAGE_END);
+
         setContentPane(p2);
         pack();
         setSize(1500, 739);

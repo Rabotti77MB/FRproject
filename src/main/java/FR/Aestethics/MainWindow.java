@@ -88,31 +88,30 @@ public class MainWindow extends JFrame implements ActionListener {
         mntest.add(mi);
 
         // JFileChooser just to watch xlsx available files --> read and print in list (be careful to xlsx fields)
-        mi.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == mi) {
-                    JFileChooser fileChooser = new JFileChooser();
-                    /* default JFileChooser is okay from Documents */
-                    FileFilter filter = new FileNameExtensionFilter("Excel File", "xlsx");
-                    fileChooser.setFileFilter(filter);
-                    int a = fileChooser.showOpenDialog(null);
+        mi.addActionListener(e -> {
+            if (e.getSource() == mi) {
+                JFileChooser fileChooser = new JFileChooser();
+                /* default JFileChooser is okay from Documents */
+                FileFilter filter = new FileNameExtensionFilter("Excel File", "xlsx");
+                fileChooser.setFileFilter(filter);
+                int a = fileChooser.showOpenDialog(null);
 
-                    if (a == JFileChooser.APPROVE_OPTION) {
-                        File fileToOpen = fileChooser.getSelectedFile();
-                        ExcelDataToJavaListTest j = new ExcelDataToJavaListTest(fileToOpen);
-                        /**
-                         try {
-                         // funziona ma non serve aprirlo, basta prendere i dati per il DB
-                         Desktop.getDesktop().open(fileToOpen);
-                         } catch (IOException ioException) {
-                         ioException.printStackTrace();
-                         }
-                         */
-                    }
+                if (a == JFileChooser.APPROVE_OPTION) {
+                    File fileToOpen = fileChooser.getSelectedFile();
+                    ExcelDataToJavaListTest j = new ExcelDataToJavaListTest(fileToOpen);
+                    /**
+                     try {
+                     // funziona ma non serve aprirlo, basta prendere i dati per il DB
+                     Desktop.getDesktop().open(fileToOpen);
+                     } catch (IOException ioException) {
+                     ioException.printStackTrace();
+                     }
+                     */
                 }
             }
         });
+
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
 
