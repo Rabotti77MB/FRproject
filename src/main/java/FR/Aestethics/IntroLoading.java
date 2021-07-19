@@ -3,7 +3,7 @@ package FR.Aestethics;
 import javax.swing.*;
 import java.awt.*;
 
-public class ImageInJframe extends JFrame {
+public class IntroLoading extends JFrame {
     private ImageImplement panel;
     private JFrame frame = new JFrame("Gestionale MBE");
     private Timer timer;
@@ -11,7 +11,7 @@ public class ImageInJframe extends JFrame {
     private JLabel label = new JLabel();
     private JPanel p = new JPanel();
 
-    public ImageInJframe() {
+    public IntroLoading() {
         ImageIcon image = new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
         frame.setIconImage(image.getImage());
         //panel = new ImageImplement(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg").getImage());
@@ -50,7 +50,7 @@ public class ImageInJframe extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(ImageInJframe::new);
+        SwingUtilities.invokeLater(IntroLoading::new);
     }
 }
 

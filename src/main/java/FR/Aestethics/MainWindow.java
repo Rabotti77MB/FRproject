@@ -142,6 +142,7 @@ public class MainWindow extends JFrame implements ActionListener {
         }
         if (e.getSource() == Corrieri) {
             System.out.println("Best Corriere");
+            JOptionPane.showMessageDialog(frame,"Our best engineers (one day hopefully) are working on it, soon available", "WORK IN PROGRESS",JOptionPane.WARNING_MESSAGE);
         }
     }
 
