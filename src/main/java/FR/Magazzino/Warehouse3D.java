@@ -365,7 +365,7 @@ public class Warehouse3D extends JFrame implements ActionListener {
         //Base.setSize(200,200);
         f.add(Base,BorderLayout.SOUTH);
 
-        label.setIcon(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Magazzino\\3D_esportazione.jpg"));
+        label.setIcon(new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Magazzino\\3D_esportazione.jpg"));
         f.add(label);
         f.pack();
 
