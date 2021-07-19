@@ -363,7 +363,7 @@ public class Warehouse2D extends JFrame implements ActionListener {
         f = new JFrame();
         f.setTitle("Gestione Magazzino");
         Base= new JPanel();
-        Base.setBackground(Color.GREEN);
+        Base.setBackground(Color.GRAY);
         //Base.setSize(200,200);
         f.add(Base,BorderLayout.SOUTH);
 
