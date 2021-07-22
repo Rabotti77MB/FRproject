@@ -1,5 +1,6 @@
 package FR.Magazzino;
 
+import FR.utils.Utils;
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
@@ -40,6 +41,8 @@ public class Chooser2D3D extends JFrame implements ActionListener {
 
         panel.add(c2D);
         panel.add(c3D);
+
+        frame.setIconImage(Utils.IMAGE.getImage());
         frame.add(panel);
         frame.setVisible(true);
         frame.setResizable(false);
@@ -58,10 +61,14 @@ public class Chooser2D3D extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == c2D) {
-            SwingUtilities.invokeLater(Warehouse2D::new);
+
+            Warehouse2D a=new Warehouse2D();
+            a.Run("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Magazzino\\pianta2Dprova.jpg");
         }
         if (e.getSource() == c3D) {
-            SwingUtilities.invokeLater(Warehouse3D::new);
+
+            Warehouse2D a=new Warehouse2D();
+            a.Run("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Magazzino\\3D_esportazione.jpg");
         }
     }
 

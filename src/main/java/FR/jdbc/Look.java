@@ -16,6 +16,11 @@ import java.sql.Statement;
 
 public class Look extends JFrame implements ActionListener {
     //private static final long serialVersionUID = 1L;
+    private final JFrame f;
+    private final JLabel Forn;
+    private final JLabel Dat;
+    private final JLabel Pag;
+    private final JLabel Num;
     private final JButton Select;
     private final JButton Pulisci;
     private final JTextField fornitore;
@@ -40,6 +45,8 @@ public class Look extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == Select) {
+            System.out.println("seleziona");
+            boolean Messo=false;
             /*codice del db per la select (vedi funzione già creata da davide) */
                 /*JOptionPane.showMessageDialog(this, "devo selezionare", "OPERAZIONE",
                         JOptionPane.WARNING_MESSAGE);*/
@@ -67,44 +74,50 @@ public class Look extends JFrame implements ActionListener {
 
                 if (check_data != 0 && check_numero != 0 && check_fornitore != 0 && check_pagamento != 0) {
 
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" " +
-                            "and Pagato = \"" + I_pagamento + "\"" +
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda like \"" + I_fornitore + "%\" " +
+                            "and Incasso like \"" + I_pagamento + "%\"" +
                             "and Numero=" + numero1 +
-                            "and Data= \"" + I_data + "\""));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\" " +
-                            "and Pagato = \"" + I_pagamento + "\"" +
+                            "and Data like \"" + I_data + "%\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda like \"" + I_fornitore + "%\" " +
+                            "and Incasso like \"" + I_pagamento + "%\"" +
                             "and Numero=" + numero1 +
-                            "and Data= '" + I_data + "'"));
+                            "and Data like '" + I_data + "%'"));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
+                    Messo=true;
                 } else if (check_data != 0) {
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Data= \"" + I_data + "\""));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Data= \"" + I_data + "\""));
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Data like \"" + I_data + "%\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Data like \"" + I_data + "%\""));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
+                    Messo=true;
                 } else if (check_numero != 0) {
                     JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Numero=" + numero1));
                     JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Numero=" + numero1));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
+                    Messo=true;
                 } else if (check_fornitore != 0) {
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda=\"" + I_fornitore + "\" " + "order by Data"));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda=\"" + I_fornitore + "\" " + "order by Data"));
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Azienda like \"" + I_fornitore + "%\" " + "order by Data"));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Azienda like \"" + I_fornitore + "%\" " + "order by Data"));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
+                    Messo=true;
                 } else if (check_pagamento != 0) {
-                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Incasso = \"" + I_pagamento + "\""));
-                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Incasso = \"" + I_pagamento + "\""));
+                    JScrollPane attivo = new JScrollPane(getTableSelect("SELECT * FROM Attivo  WHERE Incasso like \"%" + I_pagamento + "%\""));
+                    JScrollPane passivo = new JScrollPane(getTableSelect("SELECT * FROM Passivo  WHERE Incasso like \"%" + I_pagamento + "%\""));
                     Passivo.add(passivo);
                     Attivo.add(attivo);
+                    Messo=true;
                 }
 
-
-                Risult.add(Attivo, BorderLayout.WEST);
-                Risult.add(Passivo, BorderLayout.EAST);
-                Risult.revalidate();
-                Risult.repaint();
-
+                if(Messo) {
+                    Risult.add(Attivo, BorderLayout.WEST);
+                    Risult.add(Passivo, BorderLayout.EAST);
+                    Risult.revalidate();
+                    Risult.repaint();
+                    Messo=false;
+                }
             } catch (SQLException e1) {
                 JOptionPane.showMessageDialog(this, "Database Error!");
             }
@@ -113,11 +126,9 @@ public class Look extends JFrame implements ActionListener {
         }
         if (e.getSource() == Pulisci) {
             Risult.removeAll();
-            pack();
-            setSize(1500, 739);
-            p2.revalidate();
-            p2.repaint();
-            setVisible(true);
+            Risult.revalidate();
+            Risult.repaint();
+
         }
         if (e.getSource() == selezionaTutto) {
             try {
@@ -263,8 +274,11 @@ public class Look extends JFrame implements ActionListener {
 
     public JTable getTableSelect(String query) throws SQLException {
         JTable t = new JTable();
-        DefaultTableModel dm = new DefaultTableModel();
 
+        DefaultTableModel dm = new DefaultTableModel();
+        String[] columnNames = {"ERROR!!"};
+        Object[][] data = { {"Nel database non sono stati trovati risultati :("}};
+        JTable f=new JTable(data,columnNames);
         ResultSet rs = DBManager.getConnection().createStatement().executeQuery(query);
         ResultSetMetaData rsMetaData = rs.getMetaData();
 
@@ -291,8 +305,11 @@ public class Look extends JFrame implements ActionListener {
         t.setGridColor(Color.black);
         t.setRowHeight(30);
         t.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
+        int i=t.getRowCount();
+        if(i>0)
         return t;
+        else
+            return f;
     }
 
     public static void main(String[] args) throws SQLException {
@@ -303,6 +320,13 @@ public class Look extends JFrame implements ActionListener {
     }
 
     public Look() {
+        f=new JFrame();
+        f.setTitle("Gestione Fatture");
+        f.setIconImage(Utils.IMAGE.getImage());
+        Dat=new JLabel("<-- Inserisci Data");
+        Forn=new JLabel("<-- Inserisci Fornitore");
+        Num=new JLabel("<-- Inserisci Numero");
+        Pag=new JLabel("<-- Inserisci Pagamento");
         Comandi1 = new JPanel(new GridLayout(1,5));
         Comandi2= new JPanel(new GridLayout(1,4));
         ordinaBanca=new JButton("Ordina per Banca");
@@ -313,7 +337,7 @@ public class Look extends JFrame implements ActionListener {
         ordinaNum.addActionListener(this);
         ordinaData= new JButton("Ordina per Data");
         ordinaData.addActionListener(this);
-        informazione=new JLabel("PER UTILIZZARE IL TASTO SELEZIONA SCRIVERE NELLA CASELLA DESIDERATA E CANCELLARE IL CONTENUTO DEGLI ALTRI CAMPI. OPPURE RIEMPIRLI TUTTI E 4");
+        informazione=new JLabel("PER UTILIZZARE IL TASTO SELEZIONA SCRIVERE NELLA SINGOLA CASELLA DESIDERATA. OPPURE RIEMPIRE TUTTI E QUATTRO I CAMPI");
         Group = new JPanel(new BorderLayout());
         Comandi = new JPanel();
         Campi = new JPanel(new GridLayout(1, 4));
@@ -324,7 +348,7 @@ public class Look extends JFrame implements ActionListener {
         Select.addActionListener(this);
         Pulisci = new JButton("Pulisci");
         Pulisci.addActionListener(this);
-        fornitore = new JTextField("fornitore");
+
         p2 = new JPanel();
         ordinaPrezz=new JButton("Ordina per Importo");
         ordinaPrezz.addActionListener(this);
@@ -336,19 +360,32 @@ public class Look extends JFrame implements ActionListener {
         Comandi1.add(ordinaData, BorderLayout.SOUTH);
         Comandi1.add(ordinaIncass,BorderLayout.SOUTH);
         Comandi1.add(selezionaTutto, BorderLayout.SOUTH);
+
         Comandi2.add(ordinaForn, BorderLayout.SOUTH);
+
         Comandi2.add(Select, BorderLayout.SOUTH);
         Comandi2.add(Pulisci, BorderLayout.SOUTH);
         Comandi2.add(ordinaNum,BorderLayout.SOUTH);
+        fornitore = new JTextField("",1);
+
         Campi.add(fornitore, BorderLayout.NORTH);
+        Campi.add(Forn);
         Comandi.add(Comandi1,BorderLayout.NORTH);
         Comandi.add(Comandi2,BorderLayout.SOUTH);
-        Data = new JTextField("Data");
-        metodo_p = new JTextField("Pagamento");
-        numero = new JTextField("Numero");
+        Data = new JTextField("",1);
+        Data.setAutoscrolls(false);
+
+        metodo_p = new JTextField("",1);
+        numero = new JTextField("",1);
+
         Campi.add(Data);
+        Campi.add(Dat);
+
         Campi.add(metodo_p);
+        Campi.add(Pag);
+
         Campi.add(numero);
+        Campi.add(Num);
         Group.add(Comandi, BorderLayout.NORTH);
         Group.add(Campi, BorderLayout.SOUTH);
 
@@ -357,10 +394,14 @@ public class Look extends JFrame implements ActionListener {
         p2.add(Group, BorderLayout.PAGE_END);
         p2.add(Risult, BorderLayout.NORTH);
         p2.add(informazione, BorderLayout.PAGE_END);
-
-        setContentPane(p2);
-        pack();
-        setSize(1500, 739);
-        setVisible(true);
+        p2.setSize(1500,1000);
+        //p2.setBackground(Color.YELLOW);
+        //setContentPane(p2);
+        f.add(p2,BorderLayout.CENTER);
+        //f.getContentPane();
+        f.setVisible(true);
+        f.setResizable(false);
+        f.setSize(1500, 850);
+        f.setBackground(Color.GRAY);
     }
 }

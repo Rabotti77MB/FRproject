@@ -32,6 +32,7 @@ public class Warehouse2D extends JFrame implements ActionListener {
     JMenuItem Insert = new JMenuItem("Inserisci");
     JMenuItem Delete = new JMenuItem("Rimuovi");
     JMenuItem Pulisco = new JMenuItem("Pulisco");
+    JMenuItem SelTut = new JMenuItem("Seleziona Tutto");
 
     private final int height = 100;
     private final int length = 150;
@@ -314,6 +315,20 @@ public class Warehouse2D extends JFrame implements ActionListener {
             Base.repaint();
             Base.revalidate();
         }
+        if(e.getSource()==SelTut){
+            try {
+                JPanel Res=new JPanel(new BorderLayout());
+                TitledBorder titleBorder1 = new TitledBorder("Pacchi");
+                Res.setBorder(titleBorder1);
+                JScrollPane Pacchi = new JScrollPane(getTableSelect("SELECT * FROM pacchi"));
+                Res.add(Pacchi,BorderLayout.CENTER);
+                Base.add(Res);
+                Base.revalidate();
+                Base.repaint();
+            } catch (SQLException e2) {
+                JOptionPane.showMessageDialog(this, "Database Error!");
+            }
+        }
         /** --------------------------------------------------*/
         /** --------------------------------------------------*/
         /** --------------------------------------------------*/
@@ -359,7 +374,8 @@ public class Warehouse2D extends JFrame implements ActionListener {
 
         return t;
     }
-    public Warehouse2D() {
+
+    public void Run(String Im){
         f = new JFrame();
         f.setTitle("Gestione Magazzino");
         Base= new JPanel();
@@ -367,7 +383,7 @@ public class Warehouse2D extends JFrame implements ActionListener {
         //Base.setSize(200,200);
         f.add(Base,BorderLayout.SOUTH);
 
-        label.setIcon(new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Magazzino\\pianta2Dprova.jpg"));
+        label.setIcon(new ImageIcon(Im));
         f.add(label);
         f.pack();
 
@@ -442,12 +458,14 @@ public class Warehouse2D extends JFrame implements ActionListener {
         E.add(E5);
 
         Pulisco.addActionListener(this);
+        SelTut.addActionListener(this);
         Visualizza.add(Pulisco);
         Visualizza.add(A);
         Visualizza.add(B);
         Visualizza.add(C);
         Visualizza.add(D);
         Visualizza.add(E);
+        Visualizza.add(SelTut);
         menu.add(Visualizza);
         Operations.add(Insert);
         Insert.addActionListener(this);
@@ -456,7 +474,7 @@ public class Warehouse2D extends JFrame implements ActionListener {
         menu.add(Operations);
         menu.setVisible(true);
         // menu.add(Box.createRigidArea(new Dimension(100,25)));
-
+        f.setIconImage(Utils.IMAGE.getImage());
         f.setJMenuBar(menu);
         f.getContentPane();
         f.setVisible(true);
@@ -466,13 +484,16 @@ public class Warehouse2D extends JFrame implements ActionListener {
         //f.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
+    /*public  Warehouse2D( ) {
+        Run("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Magazzino\\3D_esportazione.jpg");
+
+    }*/
 
     public static void main(String[] args) throws SQLException{
 
         DBManager.setConnection(Utils.JDBC_Driver_MySQL, Utils.JDBC_URL_MySQL);
         Statement statement = DBManager.getConnection().createStatement();
 
-        SwingUtilities.invokeLater(Warehouse2D::new);
     }
 
 

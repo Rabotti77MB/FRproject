@@ -16,5 +16,3 @@ public class ImageImplement extends JPanel {
         setLayout(null);
     }
 }
-
-

@@ -12,10 +12,10 @@ public class IntroLoading extends JFrame {
     private JPanel p = new JPanel();
 
     public IntroLoading() {
-        ImageIcon image = new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
+        ImageIcon image = new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
         frame.setIconImage(image.getImage());
         //panel = new ImageImplement(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg").getImage());
-        label.setIcon(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg"));
+        label.setIcon(new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Aestethics\\logombe.jpg"));
         p.add(label);
         //label.setAlignmentY(Component.BOTTOM_ALIGNMENT);
         //label.setAlignmentX(Component.BOTTOM_ALIGNMENT);
