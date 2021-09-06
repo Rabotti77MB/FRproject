@@ -24,13 +24,8 @@ public class MainWindow extends JFrame implements ActionListener {
 
     JFrame frame = new JFrame();
 
-    // JMenuBar m;
-    // JMenu Menu;
-    // JMenuItem i1, i2, i3;
-
     public MainWindow() {
         frame.setTitle("MBE: gestionale d'impresa");
-        // Nome=new JTextArea("MBE");
         Payments = new JButton("Gestione fatture");
         Payments.setBackground(Color.BLACK);
         Payments.setPreferredSize(new Dimension(150, 150));
@@ -142,7 +137,7 @@ public class MainWindow extends JFrame implements ActionListener {
         }
         if (e.getSource() == Corrieri) {
             System.out.println("Best Corriere");
-            JOptionPane.showMessageDialog(frame,"Our best engineers (one day hopefully) are working on it, soon available", "WORK IN PROGRESS",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(frame,"Lavori in corso", "WORK IN PROGRESS",JOptionPane.WARNING_MESSAGE);
         }
     }
 

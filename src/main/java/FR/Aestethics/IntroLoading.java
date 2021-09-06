@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class IntroLoading extends JFrame {
-    private ImageImplement panel;
     private JFrame frame = new JFrame("Gestionale MBE");
     private Timer timer;
     private int count = 0;
@@ -12,15 +11,12 @@ public class IntroLoading extends JFrame {
     private JPanel p = new JPanel();
 
     public IntroLoading() {
-        ImageIcon image = new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
+        //ImageIcon image = new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
+        ImageIcon image = new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg");
         frame.setIconImage(image.getImage());
-        //panel = new ImageImplement(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg").getImage());
-        label.setIcon(new ImageIcon("C:\\Users\\draxt\\IdeaProjects\\ProgettoFR\\src\\main\\java\\FR\\Aestethics\\logombe.jpg"));
+        // panel = new ImageImplement(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg").getImage());
+        label.setIcon(new ImageIcon("C:\\Users\\Giovanni\\IdeaProjects\\FRproject\\src\\main\\java\\FR\\Aestethics\\logombe.jpg"));
         p.add(label);
-        //label.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-        //label.setAlignmentX(Component.BOTTOM_ALIGNMENT);
-        //p.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-        //p.setAlignmentX(Component.BOTTOM_ALIGNMENT);
         p.setBackground(Color.BLACK);
         frame.add(p);
         frame.pack();

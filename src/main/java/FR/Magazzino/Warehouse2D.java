@@ -1,6 +1,6 @@
 package FR.Magazzino;
 
-import FR.Aestethics.ImageImplement;
+
 import FR.jdbc.DBManager;
 import FR.utils.Utils;
 import org.apache.xpath.operations.Lt;
@@ -38,7 +38,6 @@ public class Warehouse2D extends JFrame implements ActionListener {
     private final int length = 150;
     private final int depth = 50;
     ImageIcon image;
-    private ImageImplement panel;
     JLabel label = new JLabel();
 
     @Override
